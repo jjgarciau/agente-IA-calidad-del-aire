@@ -59,3 +59,13 @@ def test_evaluacion_de_punta_a_punta(proyecto):
     assert len(trazas) == 2 and trazas[1]["traza"][0]["herramienta"] == "search_docs"
     texto = run_eval.resumen_markdown(df)
     assert "Herramienta correcta: **2/2**" in texto and "Citó un documento esperado: **1/1**" in texto
+
+
+def test_reporte_de_resultados(proyecto, tmp_path):
+    from src import reporte
+
+    modelo, metricas = train.entrenar(preprocess.cargar_diario())
+    config.METRICS_PATH.write_text(json.dumps(metricas), encoding="utf-8")
+    texto = reporte.generar(tmp_path / "RESULTADOS.md").read_text(encoding="utf-8")
+    assert "## Datos" in texto and "Naive Bayes (propio)" in texto and "Persistencia" in texto
+    assert "Aún no se ha corrido la evaluación" in texto            # sin eval/resultados.csv en el proyecto temporal
