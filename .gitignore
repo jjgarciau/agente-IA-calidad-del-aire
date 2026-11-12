@@ -1,0 +1,17 @@
+# Secretos y entorno
+.env
+.venv/
+venv/
+
+# Datos crudos horarios (se regeneran con: python -m src.download_data)
+data/raw/
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Sistema
+.DS_Store
+Thumbs.db

@@ -1,0 +1,21 @@
+# Datos y modelo (Parte 1)
+numpy>=1.26
+pandas>=2.1
+requests>=2.31
+scikit-learn>=1.4        # solo para verificar la implementación propia en las pruebas
+
+# Agente y RAG (Parte 2)
+openai>=1.40             # cliente compatible con Groq / NVIDIA NIM / Ollama
+python-dotenv>=1.0
+faiss-cpu>=1.8
+sentence-transformers>=3.0
+pypdf>=4.0
+
+# Dashboard
+streamlit>=1.38
+plotly>=5.24
+
+# Notebooks y pruebas
+matplotlib>=3.8
+notebook>=7.0
+pytest>=8.0
