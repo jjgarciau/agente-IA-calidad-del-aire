@@ -404,7 +404,7 @@
  {
   "id": 10,
   "pregunta": "¿Cómo estará mañana el aire y qué se recomienda hacer en ese nivel?",
-  "respuesta": "No pude completar la consulta por un problema con el servicio del modelo de lenguaje. Detalle: RateLimitError: Error code: 429 - Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m3a0gc1geeebp508r7w9yy2g` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 5829, Requested 2943. Please try again in 5.79s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing",
+  "respuesta": "**Pronóstico para VILLAHERMOSA (2025‑03‑13)**  \n- Categoría ICA prevista: **Aceptable** (probabilidad ≈ 99.5 %).  \n- Valor real del día anterior (2025‑03‑12): 23.5 µg/m³ (categoría Aceptable).  \n\n**Recomendaciones**  \nLos documentos consultados no contienen recomendaciones específicas para la categoría “Aceptable” del ICA. Por lo tanto, no es posible ofrecer medidas concretas basadas en la normativa disponible.  \n\n*Nota:* Esta información es académica y no constituye consejo médico; si tiene alguna condición de salud, consulte a un profesional.  \n\n**Parte sin resolver:** recomendaciones de acciones o medidas para el nivel “Aceptable”.",
   "traza": [
    {
     "iteracion": 1,
@@ -444,41 +444,41 @@
     "iteracion": 2,
     "herramienta": "search_docs",
     "argumentos": {
-     "query": "recomendaciones nivel aceptable ICA calidad del aire Valle de Aburrá"
+     "query": "recomendaciones nivel aceptable ICA PM2.5 Valle de Aburrá"
     },
     "resultado": {
      "resultados": [
       {
-       "cita": "[Fuente: Resolución 2254 de 2017 (norma de calidad del aire), p. 9]",
-       "titulo": "Resolución 2254 de 2017 (norma de calidad del aire)",
-       "archivo": "res_2254_2017.pdf",
-       "pagina": 9,
-       "similitud": 0.773,
-       "texto": "Descripción general del ICA. La descripción general del índice de calidad del aire se establece en la Tabla número 5. Tabla No. 5. Descripción general del Índice de Calidad del Aire Rango Color Estado de la calidad del aire Efectos 0 - 50 Verde Buena La contaminación atmosférica supone un riesgo bajo para la salud. 51 - 100 Amarillo Aceptable Posibles síntomas respiratorios en grupos poblacio nales sensibles."
-      },
-      {
-       "cita": "[Fuente: Resolución Metropolitana que declara el periodo de gestión de episodios (segundo semestre de 2023), p. 7]",
-       "titulo": "Resolución Metropolitana que declara el periodo de gestión de episodios (segundo semestre de 2023)",
-       "archivo": "amva_episodio_2023.pdf",
-       "pagina": 7,
-       "similitud": 0.757,
-       "texto": "poblacionales registren calidad de aire Dañina para Grupos Sensibles (ICA Naranja) y una probabilidad baja de que una estación reporte calidad de aire Dañina para la salud (ICA rojo). Por lo tanto, se plantea la necesidad de proyectar un calendario del comportamiento de la calidad del aire para el segundo semestre del año 2023, como instrumento para la definición del período de gestión de episodios de calidad del aire 27."
+       "cita": "[Fuente: Plan de acción para la implementación del protocolo POECA (alcance 2019), p. 10]",
+       "titulo": "Plan de acción para la implementación del protocolo POECA (alcance 2019)",
+       "archivo": "poeca_plan_accion.pdf",
+       "pagina": 10,
+       "similitud": 0.76,
+       "texto": "Si bien el Protocolo se enfoca en la gestión de episodios de contaminación por PM10, PM2.5 y O3, es el PM2.5 el contaminante de mayor importancia en el Valle de Aburrá al reportar los niveles más altos del Índice de Calidad del Aire (ICA) en comparación con otros contaminantes criterio."
       },
       {
        "cita": "[Fuente: Plan de acción para la implementación del protocolo POECA (alcance 2019), p. 7]",
        "titulo": "Plan de acción para la implementación del protocolo POECA (alcance 2019)",
        "archivo": "poeca_plan_accion.pdf",
        "pagina": 7,
-       "similitud": 0.755,
+       "similitud": 0.715,
        "texto": "Los registros arrojados por la Red de monitoreo de calidad del aire del Valle de Aburrá presentan al material particulado inferior a 2.5 micras -PM2.5- como el principal responsable de generar una calidad atmosférica “Dañina para grupos sensibles” y en ciertos periodos del año, “Dañina a la salud” de la población."
       },
       {
-       "cita": "[Fuente: Hoja metodológica del Índice de Calidad del Aire (ICA), p. 11]",
-       "titulo": "Hoja metodológica del Índice de Calidad del Aire (ICA)",
-       "archivo": "ica_ideam.pdf",
-       "pagina": 11,
-       "similitud": 0.749,
-       "texto": "2009. Technical Assistance Document for the Reporting of Daily Air Quality – The Air Quality Index (AQI), EPA-454/B-"
+       "cita": "[Fuente: Plan de acción para la implementación del protocolo POECA (alcance 2019), p. 36]",
+       "titulo": "Plan de acción para la implementación del protocolo POECA (alcance 2019)",
+       "archivo": "poeca_plan_accion.pdf",
+       "pagina": 36,
+       "similitud": 0.695,
+       "texto": "a efectos de instalar un (1) equipo de material particulado PM2.5 en el sector denominado “La Tablaza”, como medida de apoyo al estado de prev ención en materia de calidad del aire en el Valle de Aburrá y sus zonas limítrofes."
+      },
+      {
+       "cita": "[Fuente: Plan de acción para la implementación del protocolo POECA (alcance 2019), p. 18]",
+       "titulo": "Plan de acción para la implementación del protocolo POECA (alcance 2019)",
+       "archivo": "poeca_plan_accion.pdf",
+       "pagina": 18,
+       "similitud": 0.683,
+       "texto": "Figura 2. Concentración promedio mensual de PM2.5 para las estaciones del valle de Aburrá durante octubre del 2017 y 2018"
       }
      ]
     },
@@ -488,41 +488,129 @@
     "iteracion": 3,
     "herramienta": "search_docs",
     "argumentos": {
-     "query": "recomendaciones nivel aceptable ICA aire Valle de Aburrá grupos sensibles"
+     "query": "recomendaciones nivel aceptable ICA"
     },
     "resultado": {
      "resultados": [
+      {
+       "cita": "[Fuente: Resolución 2254 de 2017 (norma de calidad del aire), p. 9]",
+       "titulo": "Resolución 2254 de 2017 (norma de calidad del aire)",
+       "archivo": "res_2254_2017.pdf",
+       "pagina": 9,
+       "similitud": 0.707,
+       "texto": "Índice de Calidad del Aire (ICA). El ICA es un valor adimensional para reportar el estado de la calidad del aire en función de un código de colores al que están asociadas unos efectos generales que deben ser tenidos en cuenta para reducir la exposición a altas concentraciones por parte de la población. Este índice también será utilizado en el pronóstico de la calidad del aire. Artículo 19. Descripción general del ICA."
+      },
+      {
+       "cita": "[Fuente: Hoja metodológica del Índice de Calidad del Aire (ICA), p. 3]",
+       "titulo": "Hoja metodológica del Índice de Calidad del Aire (ICA)",
+       "archivo": "ica_ideam.pdf",
+       "pagina": 3,
+       "similitud": 0.668,
+       "texto": "El ICA es adimensional y su valor oscila entre 0 y 500 y está asociado a un código de colores para reportar el estado de la calidad del aire al que están asociados unos posibles efectos sobre la salud, que deben ser tenidos en 2 Para la serie de datos del 2011 al 2017, se consideran los puntos de corte establecidos en el Protocolo para el Monitoreo y Seguimiento de la Calidad del Aire."
+      },
       {
        "cita": "[Fuente: Hoja metodológica del Índice de Calidad del Aire (ICA), p. 2]",
        "titulo": "Hoja metodológica del Índice de Calidad del Aire (ICA)",
        "archivo": "ica_ideam.pdf",
        "pagina": 2,
-       "similitud": 0.708,
+       "similitud": 0.661,
        "texto": "Descripción del indicador Definición El Índice de Calidad del Aire (ICA) permite categorizar y correlacionar los niveles de inmisión de los contaminantes criterio obtenidos mediante las estaciones de monitoreo con posibles efectos adversos a la salud de la población expuesta. El ICA es un valor adimensional, entre 0 y 500, al cual se le asigna un color y una categoría, que, de menor a mayor, en orden de importancia tiene una relación con potenciales efectos a la salud."
+      },
+      {
+       "cita": "[Fuente: Hoja metodológica del Índice de Calidad del Aire (ICA), p. 2]",
+       "titulo": "Hoja metodológica del Índice de Calidad del Aire (ICA)",
+       "archivo": "ica_ideam.pdf",
+       "pagina": 2,
+       "similitud": 0.658,
+       "texto": "El ICA es un valor adimensional, entre 0 y 500, al cual se le asigna un color y una categoría, que, de menor a mayor, en orden de importancia tiene una relación con potenciales efectos a la salud. El ICA, en Colombia se reguló mediante la Resolución 2254 de 2017, la cual expone para los seis contaminantes criterio, los puntos de corte para su ponderación y respectiva categorización de acuerdo con los posibles efectos sobre la salud humana asociados."
+      }
+     ]
+    },
+    "error": false
+   },
+   {
+    "iteracion": 4,
+    "herramienta": "search_docs",
+    "argumentos": {
+     "query": "recomendaciones nivel aceptable ICA"
+    },
+    "resultado": {
+     "resultados": [
+      {
+       "cita": "[Fuente: Resolución 2254 de 2017 (norma de calidad del aire), p. 9]",
+       "titulo": "Resolución 2254 de 2017 (norma de calidad del aire)",
+       "archivo": "res_2254_2017.pdf",
+       "pagina": 9,
+       "similitud": 0.707,
+       "texto": "Índice de Calidad del Aire (ICA). El ICA es un valor adimensional para reportar el estado de la calidad del aire en función de un código de colores al que están asociadas unos efectos generales que deben ser tenidos en cuenta para reducir la exposición a altas concentraciones por parte de la población. Este índice también será utilizado en el pronóstico de la calidad del aire. Artículo 19. Descripción general del ICA."
+      },
+      {
+       "cita": "[Fuente: Hoja metodológica del Índice de Calidad del Aire (ICA), p. 3]",
+       "titulo": "Hoja metodológica del Índice de Calidad del Aire (ICA)",
+       "archivo": "ica_ideam.pdf",
+       "pagina": 3,
+       "similitud": 0.668,
+       "texto": "El ICA es adimensional y su valor oscila entre 0 y 500 y está asociado a un código de colores para reportar el estado de la calidad del aire al que están asociados unos posibles efectos sobre la salud, que deben ser tenidos en 2 Para la serie de datos del 2011 al 2017, se consideran los puntos de corte establecidos en el Protocolo para el Monitoreo y Seguimiento de la Calidad del Aire."
+      },
+      {
+       "cita": "[Fuente: Hoja metodológica del Índice de Calidad del Aire (ICA), p. 2]",
+       "titulo": "Hoja metodológica del Índice de Calidad del Aire (ICA)",
+       "archivo": "ica_ideam.pdf",
+       "pagina": 2,
+       "similitud": 0.661,
+       "texto": "Descripción del indicador Definición El Índice de Calidad del Aire (ICA) permite categorizar y correlacionar los niveles de inmisión de los contaminantes criterio obtenidos mediante las estaciones de monitoreo con posibles efectos adversos a la salud de la población expuesta. El ICA es un valor adimensional, entre 0 y 500, al cual se le asigna un color y una categoría, que, de menor a mayor, en orden de importancia tiene una relación con potenciales efectos a la salud."
+      },
+      {
+       "cita": "[Fuente: Hoja metodológica del Índice de Calidad del Aire (ICA), p. 2]",
+       "titulo": "Hoja metodológica del Índice de Calidad del Aire (ICA)",
+       "archivo": "ica_ideam.pdf",
+       "pagina": 2,
+       "similitud": 0.658,
+       "texto": "El ICA es un valor adimensional, entre 0 y 500, al cual se le asigna un color y una categoría, que, de menor a mayor, en orden de importancia tiene una relación con potenciales efectos a la salud. El ICA, en Colombia se reguló mediante la Resolución 2254 de 2017, la cual expone para los seis contaminantes criterio, los puntos de corte para su ponderación y respectiva categorización de acuerdo con los posibles efectos sobre la salud humana asociados."
+      }
+     ]
+    },
+    "error": false
+   },
+   {
+    "iteracion": 5,
+    "herramienta": "search_docs",
+    "argumentos": {
+     "query": "recomendaciones nivel aceptable ICA aire aceptable"
+    },
+    "resultado": {
+     "resultados": [
+      {
+       "cita": "[Fuente: Resolución 2254 de 2017 (norma de calidad del aire), p. 9]",
+       "titulo": "Resolución 2254 de 2017 (norma de calidad del aire)",
+       "archivo": "res_2254_2017.pdf",
+       "pagina": 9,
+       "similitud": 0.754,
+       "texto": "Índice de Calidad del Aire (ICA). El ICA es un valor adimensional para reportar el estado de la calidad del aire en función de un código de colores al que están asociadas unos efectos generales que deben ser tenidos en cuenta para reducir la exposición a altas concentraciones por parte de la población. Este índice también será utilizado en el pronóstico de la calidad del aire. Artículo 19. Descripción general del ICA."
+      },
+      {
+       "cita": "[Fuente: Hoja metodológica del Índice de Calidad del Aire (ICA), p. 3]",
+       "titulo": "Hoja metodológica del Índice de Calidad del Aire (ICA)",
+       "archivo": "ica_ideam.pdf",
+       "pagina": 3,
+       "similitud": 0.746,
+       "texto": "El ICA es adimensional y su valor oscila entre 0 y 500 y está asociado a un código de colores para reportar el estado de la calidad del aire al que están asociados unos posibles efectos sobre la salud, que deben ser tenidos en 2 Para la serie de datos del 2011 al 2017, se consideran los puntos de corte establecidos en el Protocolo para el Monitoreo y Seguimiento de la Calidad del Aire."
       },
       {
        "cita": "[Fuente: Resolución Metropolitana que declara el periodo de gestión de episodios (segundo semestre de 2023), p. 7]",
        "titulo": "Resolución Metropolitana que declara el periodo de gestión de episodios (segundo semestre de 2023)",
        "archivo": "amva_episodio_2023.pdf",
        "pagina": 7,
-       "similitud": 0.696,
+       "similitud": 0.721,
        "texto": "poblacionales registren calidad de aire Dañina para Grupos Sensibles (ICA Naranja) y una probabilidad baja de que una estación reporte calidad de aire Dañina para la salud (ICA rojo). Por lo tanto, se plantea la necesidad de proyectar un calendario del comportamiento de la calidad del aire para el segundo semestre del año 2023, como instrumento para la definición del período de gestión de episodios de calidad del aire 27."
       },
       {
-       "cita": "[Fuente: Resolución Metropolitana que declara el periodo de gestión de episodios (segundo semestre de 2023), p. 5]",
-       "titulo": "Resolución Metropolitana que declara el periodo de gestión de episodios (segundo semestre de 2023)",
-       "archivo": "amva_episodio_2023.pdf",
-       "pagina": 5,
-       "similitud": 0.677,
-       "texto": "Por lo tanto y como medida para aplicar herramientas de gobernabilidad sobre fuentes de emisión al interior del Valle de Aburrá, y dar soporte a los planes que debe ejecutar la Entidad en el marco del Plan Operacional para enfrentar Episodios de Contaminac ión Atmosférica en el Área Metropolitana del Vallé de Aburrá (POECA), cuyo enfoque es la adopción de medidas de prevención para garantizar que la calidad de aire no pueda afectar negativamente a la población de su territorio, se presentará la"
-      },
-      {
-       "cita": "[Fuente: Resolución 2254 de 2017 (norma de calidad del aire), p. 9]",
-       "titulo": "Resolución 2254 de 2017 (norma de calidad del aire)",
-       "archivo": "res_2254_2017.pdf",
-       "pagina": 9,
-       "similitud": 0.677,
-       "texto": "Índice de Calidad del Aire (ICA). El ICA es un valor adimensional para reportar el estado de la calidad del aire en función de un código de colores al que están asociadas unos efectos generales que deben ser tenidos en cuenta para reducir la exposición a altas concentraciones por parte de la población. Este índice también será utilizado en el pronóstico de la calidad del aire. Artículo 19. Descripción general del ICA."
+       "cita": "[Fuente: Hoja metodológica del Índice de Calidad del Aire (ICA), p. 7]",
+       "titulo": "Hoja metodológica del Índice de Calidad del Aire (ICA)",
+       "archivo": "ica_ideam.pdf",
+       "pagina": 7,
+       "similitud": 0.719,
+       "texto": "03 Fecha: 10/07/2025 𝑃𝐶𝑎𝑙𝑡𝑜 Punto de corte mayor o igual a 𝐶𝑝 𝑃𝐶𝑏𝑎𝑗𝑜 Punto de corte menor o igual a 𝐶𝑝 𝐼𝑎𝑙𝑡𝑜 Valor del ICA correspondiente al 𝑃𝐶𝑎𝑙𝑡𝑜 𝐼𝑏𝑎𝑗𝑜 Valor del ICA correspondiente al 𝑃𝐶𝑏𝑎𝑗𝑜 Posteriormente, a partir del cálculo del ICAp, se determina la proporción de datos en la cual se presentaron las diferentes categorías del estado de la calidad del aire."
       }
      ]
     },

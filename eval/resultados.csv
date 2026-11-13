@@ -31,7 +31,16 @@ Estos valores están establecidos en la **Resolución 2254 de 2017**, Tabla�
 9,normativa,¿Qué es el POECA y quién declara un episodio de contaminación?,,,search_docs,search_docs,True,POECA|episodios,True,True,0,2,False,,17.6,"El **POECA** (Plan Operacional para Enfrentar Episodios de Contaminación Atmosférica) es uno de los ejes temáticos del Plan Integral de Gestión de la Calidad del Aire en el Valle de Aburrá (PIGECA 2017‑2030) y agrupa medidas destinadas a reducir rápidamente los niveles de contaminación y a proteger a la población frente a episodios críticos [Fuente: Plan de acción para la implementación del protocolo POECA (alcance 2019), p. 12].
 
 La **declaratoria oficial de un episodio de contaminación** la realiza el Área Metropolitana del Valle de Aburrá (AMVA), que según los registros ha emitido 14 episodios entre febrero y marzo de 2017, aplicando los niveles de alerta correspondientes [Fuente: Plan de acción para la implementación del protocolo POECA (alcance 2019), p. 41].",,
-10,encadenada,¿Cómo estará mañana el aire y qué se recomienda hacer en ese nivel?,VILLAHERMOSA,2025-03-12,predict_tomorrow+search_docs,predict_tomorrow > search_docs > search_docs,True,POECA|ICA|2254|episodios,True,False,0,3,False,"RateLimitError: Error code: 429 - Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m3a0gc1geeebp508r7w9yy2g` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 5829, Requested 2943. Please try again in 5.79s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing",33.7,"No pude completar la consulta por un problema con el servicio del modelo de lenguaje. Detalle: RateLimitError: Error code: 429 - Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m3a0gc1geeebp508r7w9yy2g` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 5829, Requested 2943. Please try again in 5.79s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing",,
+10,encadenada,¿Cómo estará mañana el aire y qué se recomienda hacer en ese nivel?,VILLAHERMOSA,2025-03-12,predict_tomorrow+search_docs,predict_tomorrow > search_docs > search_docs > search_docs > search_docs,True,POECA|ICA|2254|episodios,True,False,0,5,True,,80.1,"**Pronóstico para VILLAHERMOSA (2025‑03‑13)**  
+- Categoría ICA prevista: **Aceptable** (probabilidad ≈ 99.5 %).  
+- Valor real del día anterior (2025‑03‑12): 23.5 µg/m³ (categoría Aceptable).  
+
+**Recomendaciones**  
+Los documentos consultados no contienen recomendaciones específicas para la categoría “Aceptable” del ICA. Por lo tanto, no es posible ofrecer medidas concretas basadas en la normativa disponible.  
+
+*Nota:* Esta información es académica y no constituye consejo médico; si tiene alguna condición de salud, consulte a un profesional.  
+
+**Parte sin resolver:** recomendaciones de acciones o medidas para el nivel “Aceptable”.",,
 11,limite,¿Cuál fue el PM2.5 en la estación Marte el 2025-03-12?,,,get_pm25|list_stations,get_pm25,True,,,,1,2,False,,1.6,"Lo siento, pero no hay ninguna estación de monitoreo llamada **“Marte”** en la base de datos. Las estaciones disponibles son, por ejemplo: ALMACÉN GENERAL DE EPM, ALTAVISTA, BIBLIOTECA FERNANDO B., TRÁFICO CENTRO, TRÁFICO SUR, UNIVERSIDAD CES, VILLAHERMOSA, entre otras.
 
 Por favor, indícame una de esas estaciones y la fecha que deseas consultar para poder obtener el valor de PM2.5.",,
