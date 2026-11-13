@@ -1,62 +1,40 @@
 id,tipo,pregunta,estacion,fecha,herramienta_esperada,herramientas_llamadas,herramienta_correcta,fuente_esperada,recupero_fuente,cito_fuente,errores_herramienta,iteraciones,limite_alcanzado,error_llm,segundos,respuesta,respuesta_correcta,notas
-1,dato,¿Cuál fue el PM2.5 en Tráfico Centro el 2025-03-12?,,,get_pm25,get_pm25,True,,,,0,2,False,,3.4,"En la estación **TRÁFICO CENTRO** del Valle de Aburrá, el **12 de marzo de 2025** el promedio diario de PM2.5 fue **37.2 µg/m³**, correspondiente a la categoría **Aceptable** del ICA.  
+1,dato,¿Cuál fue el PM2.5 en Tráfico Centro el 2025-03-12?,,,get_pm25,get_pm25,True,,,,0,2,False,,4.5,"En la estación **TRÁFICO CENTRO** del Valle de Aburrá, el **12 de marzo de 2025** se registró un promedio diario de **PM2.5 = 37.2 µg/m³**, correspondiente a la categoría ICA **“Aceptable”**.  
 
-*Estación:* TRÁFICO CENTRO  
-*Fecha:* 2025‑03‑12  
-*PM2.5:* 37.2 µg/m³ (Aceptable)  
+*(Datos obtenidos del registro histórico de la estación.)*",,
+2,dato,¿Cómo estuvo el aire hoy?,VILLAHERMOSA,2025-10-15,get_pm25,get_pm25,True,,,,0,2,False,,1.5,"Hoy, 15 de octubre de 2025, en la estación **VILLAHERMOSA** se registró una concentración promedio de PM2.5 de **18.6 µg/m³**, lo que corresponde a la categoría **ICA : Aceptable**.  
 
-Recuerda que esta información es solo informativa y no sustituye una orientación médica.",,
-2,dato,¿Cómo estuvo el aire hoy?,VILLAHERMOSA,2025-10-15,get_pm25,get_pm25,True,,,,0,2,False,,1.8,"Hoy, 15 de octubre de 2025, en la estación **VILLAHERMOSA** (Medellín) se registró un promedio diario de **PM2.5 = 18.6 µg/m³**, lo que corresponde a la categoría **ICA: Aceptable**.  
+*Este es un informe informativo y no constituye consejo médico.*",,
+3,dato,¿Cuál fue el día con más PM2.5 en Casa Justicia durante la semana que terminó el 2025-03-16?,,,get_pm25,get_pm25,True,,,,0,2,False,,3.4,"En la estación **Casa Justicia** (Itagüí), el día con mayor concentración de PM2.5 durante la semana que finalizó el **16 de marzo de 2025** fue el **11 de marzo de 2025**, con **32.7 µg/m³**, categoría ICA **Aceptable**.  
 
-El nivel es bajo y no se requieren medidas especiales; sin embargo, si eres sensible a la calidad del aire, sigue las recomendaciones habituales de salud (este mensaje no constituye consejo médico).",,
-3,dato,¿Cuál fue el día con más PM2.5 en Casa Justicia durante la semana que terminó el 2025-03-16?,,,get_pm25,get_pm25,True,,,,0,2,False,,1.8,"En la estación **Casa Justicia** (Itagüí), el día con mayor concentración de PM2.5 durante la semana que finalizó el **16 de marzo de 2025** fue el **11 de marzo de 2025**, con **32.7 µg/m³**, correspondiente a la categoría **ICA: Aceptable**.",,
-4,prediccion,¿Qué categoría de calidad del aire se espera mañana?,TRÁFICO CENTRO,2025-03-12,predict_tomorrow,predict_tomorrow,True,,,,0,2,False,,2.0,"Para la estación **TRÁFICO CENTRO**, el día **2025‑03‑13** (mañana) se pronostica la categoría **“Dañina para grupos sensibles”** con una probabilidad del **74.6 %**. Las demás probabilidades son: Aceptable 25.4 %, Buena 0 % y Dañina o peor 0 %.  
+*Nota: esta información es solo informativa y no constituye consejo médico.*",,
+4,prediccion,¿Qué categoría de calidad del aire se espera mañana?,TRÁFICO CENTRO,2025-03-12,predict_tomorrow,predict_tomorrow,True,,,,0,2,False,,7.9,"Para la estación **TRÁFICO CENTRO**, el día **13 de marzo de 2025** se prevé la categoría ICA **Aceptable** con una probabilidad del **78.7 %**. Las demás probabilidades son: 21.3 % para “Dañina para grupos sensibles” y 0 % para “Buena” y “Dañina o peor”.",,
+5,prediccion,Dame el pronóstico para el día siguiente al 2025-10-20 en la estación Santa Elena.,,,predict_tomorrow,predict_tomorrow,True,,,,0,2,False,,14.5,"Pronóstico para **Santa Elena** el **21 de octubre de 2025** (día siguiente al 20‑10‑2025):
 
-*Pronóstico basado en el modelo Naive Bayes (exactitud ≈ 77 %).*",,
-5,prediccion,Dame el pronóstico para el día siguiente al 2025-10-20 en la estación Santa Elena.,,,predict_tomorrow,predict_tomorrow,True,,,,0,2,False,,14.6,"**Estación:** Santa Elena  
-**Fecha del pronóstico:** 2025‑10‑21 (día siguiente al 2025‑10‑20)  
+- **Categoría ICA prevista:** **Buena**  
+- **Probabilidad de la categoría Buena:** **98.7 %** (las demás categorías suman 1.3 %).
 
-**Categoría ICA pronosticada:** **Buena**  
-**Probabilidad:** 83 % (Buena = 0.831, Aceptable = 0.169, otras = 0)  
+Este pronóstico se basa en el modelo Naive Bayes y refleja la probabilidad más alta para una calidad del aire “Buena” en esa fecha. Recuerde que es una estimación y no un dato medido.",,
+6,prediccion,¿Qué probabilidad hay de que mañana el aire sea dañino para grupos sensibles?,LICEO FERNANDO VÉLEZ,2025-02-25,predict_tomorrow,predict_tomorrow,True,,,,0,2,False,,22.7,"En la estación **LICEO FERNANDO VÉLEZ**, para el día **2025‑02‑26** (mañana) el modelo predice la categoría ICA **Aceptable**. La probabilidad de que la categoría sea **“Dañina para grupos sensibles”** es **0 %**.
 
-El modelo indica que la calidad del aire será buena, con una alta confianza en la predicción. Recuerde que esta información es solo un pronóstico y no constituye consejo médico.",,
-6,prediccion,¿Qué probabilidad hay de que mañana el aire sea dañino para grupos sensibles?,LICEO FERNANDO VÉLEZ,2025-02-25,predict_tomorrow,predict_tomorrow,True,,,,0,2,False,,23.6,"En la estación **LICEO FERNANDO VÉLEZ**, para el día **2025‑02‑26** (mañana), el modelo predice la categoría ICA **Aceptable**.  
+> Probabilidad = 0.0 % para “Dañina para grupos sensibles” (según el pronóstico de Naive Bayes).
 
-- **Probabilidad de que sea “Dañina para grupos sensibles”**: **0 %** (probabilidad = 0.0).  
+Recuerda que esta información es solo orientativa y no constituye consejo médico; si tienes condiciones respiratorias, sigue las recomendaciones de salud habituales.",,
+7,normativa,¿Cuál es el nivel máximo permisible de PM2.5 para 24 horas en Colombia?,,,search_docs,search_docs,True,2254|ICA|POECA,True,True,0,2,False,,28.7,"El nivel máximo permisible de PM2.5 para una exposición de 24 horas en Colombia es **37 µg/m³** (vigente desde el 1 de julio de 2018)[""cita"":""[Fuente: Resolución 2254 de 2017: tablas 1, 2, 4 y 6 (transcripción), p. 1]""}].",,
+8,normativa,"¿Qué rangos de PM2.5 corresponden a los niveles de prevención, alerta y emergencia?",,,search_docs,search_docs,True,POECA|2254,True,True,0,2,False,,16.3,"Los rangos de concentración de **PM2.5 (exposición de 24 h)** que definen los niveles de la ICA son:
 
-Esta predicción se basa en el modelo Naive Bayes y no constituye consejo médico; si tienes condiciones de salud sensibles, sigue las recomendaciones de las autoridades sanitarias.",,
-7,normativa,¿Cuál es el nivel máximo permisible de PM2.5 para 24 horas en Colombia?,,,search_docs,search_docs,True,2254|ICA|POECA,True,False,0,2,False,,17.3,"Según la **Hoja metodológica del Índice de Calidad del Aire (ICA)**, el valor máximo permisible de PM2.5 para un promedio de 24 horas en Colombia es **54 µg/m³** (límite superior de la categoría “Buena”)【Fuente: Hoja metodológica del Índice de Calidad del Aire (ICA), p. 5】.  
+- **Prevención:** 38 – 55 µg/m³.  
+- **Alerta:** 56 – 150 µg/m³.  
+- **Emergencia:** ≥ 151 µg/m³.
 
-Este es el umbral que define la exposición considerada segura para la población; valores superiores indican deterioro de la calidad del aire y pueden requerir medidas de mitigación.  
+Estos valores están establecidos en la **Resolución 2254 de 2017**, Tabla 4, y son aplicables desde el 1 de julio 2018[Fuente: Resolución 2254 de 2017: tablas 1, 2, 4 y 6 (transcripción), p. 1].",,
+9,normativa,¿Qué es el POECA y quién declara un episodio de contaminación?,,,search_docs,search_docs,True,POECA|episodios,True,True,0,2,False,,17.6,"El **POECA** (Plan Operacional para Enfrentar Episodios de Contaminación Atmosférica) es uno de los ejes temáticos del Plan Integral de Gestión de la Calidad del Aire en el Valle de Aburrá (PIGECA 2017‑2030) y agrupa medidas destinadas a reducir rápidamente los niveles de contaminación y a proteger a la población frente a episodios críticos [Fuente: Plan de acción para la implementación del protocolo POECA (alcance 2019), p. 12].
 
-*Nota: la información es de carácter ambiental y no constituye consejo médico.*",,
-8,normativa,"¿Qué rangos de PM2.5 corresponden a los niveles de prevención, alerta y emergencia?",,,search_docs,search_docs,True,POECA|2254,True,True,0,2,False,,8.9,"Los rangos de concentración de PM2.5 (promedio de 24 h) que determinan los niveles de contingencia atmosférica en el Valle de Aburrá son:
+La **declaratoria oficial de un episodio de contaminación** la realiza el Área Metropolitana del Valle de Aburrá (AMVA), que según los registros ha emitido 14 episodios entre febrero y marzo de 2017, aplicando los niveles de alerta correspondientes [Fuente: Plan de acción para la implementación del protocolo POECA (alcance 2019), p. 41].",,
+10,encadenada,¿Cómo estará mañana el aire y qué se recomienda hacer en ese nivel?,VILLAHERMOSA,2025-03-12,predict_tomorrow+search_docs,predict_tomorrow > search_docs > search_docs,True,POECA|ICA|2254|episodios,True,False,0,3,False,"RateLimitError: Error code: 429 - Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m3a0gc1geeebp508r7w9yy2g` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 5829, Requested 2943. Please try again in 5.79s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing",33.7,"No pude completar la consulta por un problema con el servicio del modelo de lenguaje. Detalle: RateLimitError: Error code: 429 - Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m3a0gc1geeebp508r7w9yy2g` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 5829, Requested 2943. Please try again in 5.79s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing",,
+11,limite,¿Cuál fue el PM2.5 en la estación Marte el 2025-03-12?,,,get_pm25|list_stations,get_pm25,True,,,,1,2,False,,1.6,"Lo siento, pero no hay ninguna estación de monitoreo llamada **“Marte”** en la base de datos. Las estaciones disponibles son, por ejemplo: ALMACÉN GENERAL DE EPM, ALTAVISTA, BIBLIOTECA FERNANDO B., TRÁFICO CENTRO, TRÁFICO SUR, UNIVERSIDAD CES, VILLAHERMOSA, entre otras.
 
-| Nivel | Concentración (µg/m³) |
-|-------|----------------------|
-| **Prevención** | 38 – 55 |
-| **Alerta** | 56 – 150 |
-| **Emergencia** | ≥ 151 |
-
-Estos valores están establecidos en la Tabla 4 de la Resolución 2254 de 2017 del Ministerio de Ambiente y Desarrollo Sostenible [Fuente: Resolución 2254 de 2017 (norma de calidad del aire), p. 13].",,
-9,normativa,¿Qué es el POECA y quién declara un episodio de contaminación?,,,search_docs,search_docs,True,POECA|episodios,True,True,0,2,False,,23.6,"El **POECA** (Plan Operacional para Enfrentar Episodios de Contaminación Atmosférica) es el conjunto de medidas operativas que forman parte del Plan Integral de Gestión de la Calidad del Aire en el Valle de Aburrá (PIGECA 2017‑2030) y tiene como objetivo reducir rápidamente los niveles de contaminación y proteger a la población [Fuente: Plan de acción para la implementación del protocolo POECA (alcance 2019), p. 12].
-
-La **declaratoria de un episodio de contaminación** la realiza la **Área Metropolitana del Valle de Aburrá (AMVA)**, mediante resoluciones metropolitanas que establecen los niveles de alerta (por ejemplo, alerta naranja) y activan el protocolo POECA [Fuente: Resolución Metropolitana que declara el periodo de gestión de episodios (segundo semestre de 2023), p. 1; Plan de acción para la implementación del protocolo POECA (alcance 2019), p. 41].",,
-10,encadenada,¿Cómo estará mañana el aire y qué se recomienda hacer en ese nivel?,VILLAHERMOSA,2025-03-12,predict_tomorrow+search_docs,predict_tomorrow > search_docs,True,POECA|ICA|2254|episodios,True,False,0,3,False,,35.8,"**Estación:** VILLAHERMOSA  
-**Fecha:** 2025‑03‑13 (mañana)  
-**Categoría ICA prevista:** **Aceptable** (probabilidad ≈ 99.7 %)
-
-Según la Resolución 2254 de 2017, la categoría “Aceptable” (ICA 51‑100, color amarillo) indica que *“posibles síntomas respiratorios pueden presentarse en grupos poblacionales sensibles”*【1†Fuente: Resolución 2254 de 2017 (norma de calidad del aire), p. 9】.
-
-**Recomendaciones (no son consejo médico):**  
-- Personas con asma, alergias u otras afecciones respiratorias deben limitar actividades al aire libre y, de ser necesario, usar mascarilla filtrante (N95 o equivalente).  
-- Mantener puertas y ventanas cerradas en espacios cerrados para reducir la exposición.  
-- Monitorear síntomas respiratorios y, si empeoran, consultar a un profesional de salud.  
-
-Estas medidas ayudan a proteger a los grupos sensibles mientras la calidad del aire se mantiene en nivel aceptable.",,
-11,limite,¿Cuál fue el PM2.5 en la estación Marte el 2025-03-12?,,,get_pm25|list_stations,get_pm25,True,,,,1,2,False,,1.7,"Lo siento, pero no hay ninguna estación de monitoreo llamada **“Marte”** en la base de datos. Las estaciones disponibles son, por ejemplo, ALMACÉN GENERAL DE EPM, ALTAVISTA, TRÁFICO CENTRO, HOSPITAL MANUEL URIBE, entre otras.
-
-Si me indicas una de esas estaciones, podré consultar el valor de PM2.5 registrado el 12 de marzo de 2025. ¡Quedo atento a tu elección!",,
-12,limite,¿Cuál fue el PM2.5 en Tráfico Centro el 2027-06-01?,,,get_pm25,ninguna,False,,,,0,1,False,,1.2,"Lo siento, pero no disponemos de datos de PM2.5 para la estación **Tráfico Centro** en la fecha **2027‑06‑01**, ya que nuestro historial solo cubre el período del 1 de enero de 2022 al 31 de diciembre de 2025. Si necesita información dentro de ese rango, con gusto la busco.",,
-13,limite,¿Qué multa se paga por incumplir el pico y placa ambiental?,,,search_docs,search_docs,True,,,,0,2,False,,16.6,"Los documentos disponibles en la base de datos no contienen información sobre la multa que se paga por incumplir el pico y placa ambiental en el Valle de Aburrá. Si necesita ese dato, le recomiendo consultar la normativa oficial o la autoridad ambiental competente.",,
-14,fuera_de_dominio,¿Quién ganó el mundial de fútbol de 2014?,,,ninguna,ninguna,True,,,,0,1,False,,1.1,"Lo siento, pero solo puedo ayudar con preguntas relacionadas con la calidad del aire (PM2.5) en el Valle de Aburrá. Si tienes alguna consulta sobre ese tema, estaré encantado de asistirte.",,
+Por favor, indícame una de esas estaciones y la fecha que deseas consultar para poder obtener el valor de PM2.5.",,
+12,limite,¿Cuál fue el PM2.5 en Tráfico Centro el 2027-06-01?,,,get_pm25,ninguna,False,,,,0,1,False,,3.2,"Lo siento, pero los datos disponibles solo abarcan del 2022‑01‑01 al 2025‑12‑31. La fecha 2027‑06‑01 está fuera de ese rango, por lo que no puedo proporcionar el valor de PM2.5 para esa día. Si lo deseas, puedo buscar el valor para alguna fecha dentro del período disponible.",,
+13,limite,¿Qué multa se paga por incumplir el pico y placa ambiental?,,,search_docs,search_docs,True,,,,0,2,False,,16.2,"Los documentos disponibles en la base de datos no contienen información sobre la multa que se paga por incumplir el pico y placa ambiental. Por lo tanto, no puedo proporcionar ese dato. Si necesita información específica sobre sanciones, le recomiendo consultar la normativa municipal o la autoridad ambiental competente.",,
+14,fuera_de_dominio,¿Quién ganó el mundial de fútbol de 2014?,,,ninguna,ninguna,True,,,,0,1,False,,3.1,"Lo siento, pero mi función es ayudar con información sobre la calidad del aire (PM2.5) en el Valle de Aburrá. No dispongo de datos sobre el Mundial de fútbol de 2014.",,

@@ -2,7 +2,7 @@
  {
   "id": 1,
   "pregunta": "¿Cuál fue el PM2.5 en Tráfico Centro el 2025-03-12?",
-  "respuesta": "En la estación **TRÁFICO CENTRO** del Valle de Aburrá, el **12 de marzo de 2025** el promedio diario de PM2.5 fue **37.2 µg/m³**, correspondiente a la categoría **Aceptable** del ICA.  \n\n*Estación:* TRÁFICO CENTRO  \n*Fecha:* 2025‑03‑12  \n*PM2.5:* 37.2 µg/m³ (Aceptable)  \n\nRecuerda que esta información es solo informativa y no sustituye una orientación médica.",
+  "respuesta": "En la estación **TRÁFICO CENTRO** del Valle de Aburrá, el **12 de marzo de 2025** se registró un promedio diario de **PM2.5 = 37.2 µg/m³**, correspondiente a la categoría ICA **“Aceptable”**.  \n\n*(Datos obtenidos del registro histórico de la estación.)*",
   "traza": [
    {
     "iteracion": 1,
@@ -28,7 +28,7 @@
  {
   "id": 2,
   "pregunta": "¿Cómo estuvo el aire hoy?",
-  "respuesta": "Hoy, 15 de octubre de 2025, en la estación **VILLAHERMOSA** (Medellín) se registró un promedio diario de **PM2.5 = 18.6 µg/m³**, lo que corresponde a la categoría **ICA: Aceptable**.  \n\nEl nivel es bajo y no se requieren medidas especiales; sin embargo, si eres sensible a la calidad del aire, sigue las recomendaciones habituales de salud (este mensaje no constituye consejo médico).",
+  "respuesta": "Hoy, 15 de octubre de 2025, en la estación **VILLAHERMOSA** se registró una concentración promedio de PM2.5 de **18.6 µg/m³**, lo que corresponde a la categoría **ICA : Aceptable**.  \n\n*Este es un informe informativo y no constituye consejo médico.*",
   "traza": [
    {
     "iteracion": 1,
@@ -54,7 +54,7 @@
  {
   "id": 3,
   "pregunta": "¿Cuál fue el día con más PM2.5 en Casa Justicia durante la semana que terminó el 2025-03-16?",
-  "respuesta": "En la estación **Casa Justicia** (Itagüí), el día con mayor concentración de PM2.5 durante la semana que finalizó el **16 de marzo de 2025** fue el **11 de marzo de 2025**, con **32.7 µg/m³**, correspondiente a la categoría **ICA: Aceptable**.",
+  "respuesta": "En la estación **Casa Justicia** (Itagüí), el día con mayor concentración de PM2.5 durante la semana que finalizó el **16 de marzo de 2025** fue el **11 de marzo de 2025**, con **32.7 µg/m³**, categoría ICA **Aceptable**.  \n\n*Nota: esta información es solo informativa y no constituye consejo médico.*",
   "traza": [
    {
     "iteracion": 1,
@@ -128,7 +128,7 @@
  {
   "id": 4,
   "pregunta": "¿Qué categoría de calidad del aire se espera mañana?",
-  "respuesta": "Para la estación **TRÁFICO CENTRO**, el día **2025‑03‑13** (mañana) se pronostica la categoría **“Dañina para grupos sensibles”** con una probabilidad del **74.6 %**. Las demás probabilidades son: Aceptable 25.4 %, Buena 0 % y Dañina o peor 0 %.  \n\n*Pronóstico basado en el modelo Naive Bayes (exactitud ≈ 77 %).*",
+  "respuesta": "Para la estación **TRÁFICO CENTRO**, el día **13 de marzo de 2025** se prevé la categoría ICA **Aceptable** con una probabilidad del **78.7 %**. Las demás probabilidades son: 21.3 % para “Dañina para grupos sensibles” y 0 % para “Buena” y “Dañina o peor”.",
   "traza": [
    {
     "iteracion": 1,
@@ -141,28 +141,26 @@
      "estacion": "TRÁFICO CENTRO",
      "fecha_referencia": "2025-03-12",
      "fecha_predicha": "2025-03-13",
-     "categoria_predicha": "Dañina para grupos sensibles",
+     "categoria_predicha": "Aceptable",
      "probabilidades": {
       "Buena": 0.0,
-      "Aceptable": 0.254,
-      "Dañina para grupos sensibles": 0.746,
+      "Aceptable": 0.787,
+      "Dañina para grupos sensibles": 0.213,
       "Dañina o peor": 0.0
      },
      "pm25_hoy_ug_m3": 37.2,
      "variables_usadas": {
-      "nivel_hoy": "28-37",
-      "clase_ayer": "Dañina para grupos sensibles",
-      "tendencia": "estable",
-      "temporada": "feb-abr",
+      "nivel_hoy": "33-37 µg/m³",
+      "nivel_semana": "28-32 µg/m³ (promedio de los últimos 7 días)",
       "dia_manana": "laboral",
-      "nivel_valle": "20-27"
+      "cambio_valle": "baja (-2.6 µg/m³ frente a ayer en el promedio del valle)"
      },
      "valor_real": {
       "pm25_ug_m3": 33.2,
       "categoria": "Aceptable"
      },
-     "acierto": false,
-     "modelo": "Naive Bayes categórico (implementación propia); exactitud en el periodo de prueba: 77%"
+     "acierto": true,
+     "modelo": "Naive Bayes categórico (implementación propia); exactitud en el periodo de prueba: 79%"
     },
     "error": false
    }
@@ -171,7 +169,7 @@
  {
   "id": 5,
   "pregunta": "Dame el pronóstico para el día siguiente al 2025-10-20 en la estación Santa Elena.",
-  "respuesta": "**Estación:** Santa Elena  \n**Fecha del pronóstico:** 2025‑10‑21 (día siguiente al 2025‑10‑20)  \n\n**Categoría ICA pronosticada:** **Buena**  \n**Probabilidad:** 83 % (Buena = 0.831, Aceptable = 0.169, otras = 0)  \n\nEl modelo indica que la calidad del aire será buena, con una alta confianza en la predicción. Recuerde que esta información es solo un pronóstico y no constituye consejo médico.",
+  "respuesta": "Pronóstico para **Santa Elena** el **21 de octubre de 2025** (día siguiente al 20‑10‑2025):\n\n- **Categoría ICA prevista:** **Buena**  \n- **Probabilidad de la categoría Buena:** **98.7 %** (las demás categorías suman 1.3 %).\n\nEste pronóstico se basa en el modelo Naive Bayes y refleja la probabilidad más alta para una calidad del aire “Buena” en esa fecha. Recuerde que es una estimación y no un dato medido.",
   "traza": [
    {
     "iteracion": 1,
@@ -186,26 +184,24 @@
      "fecha_predicha": "2025-10-21",
      "categoria_predicha": "Buena",
      "probabilidades": {
-      "Buena": 0.831,
-      "Aceptable": 0.169,
+      "Buena": 0.987,
+      "Aceptable": 0.013,
       "Dañina para grupos sensibles": 0.0,
       "Dañina o peor": 0.0
      },
      "pm25_hoy_ug_m3": 9.5,
      "variables_usadas": {
-      "nivel_hoy": "0-12",
-      "clase_ayer": "Buena",
-      "tendencia": "sube",
-      "temporada": "oct-nov",
+      "nivel_hoy": "8-10 µg/m³",
+      "nivel_semana": "0-7 µg/m³ (promedio de los últimos 7 días)",
       "dia_manana": "laboral",
-      "nivel_valle": "13-19"
+      "cambio_valle": "estable (+0.4 µg/m³ frente a ayer en el promedio del valle)"
      },
      "valor_real": {
       "pm25_ug_m3": 8.1,
       "categoria": "Buena"
      },
      "acierto": true,
-     "modelo": "Naive Bayes categórico (implementación propia); exactitud en el periodo de prueba: 77%"
+     "modelo": "Naive Bayes categórico (implementación propia); exactitud en el periodo de prueba: 79%"
     },
     "error": false
    }
@@ -214,7 +210,7 @@
  {
   "id": 6,
   "pregunta": "¿Qué probabilidad hay de que mañana el aire sea dañino para grupos sensibles?",
-  "respuesta": "En la estación **LICEO FERNANDO VÉLEZ**, para el día **2025‑02‑26** (mañana), el modelo predice la categoría ICA **Aceptable**.  \n\n- **Probabilidad de que sea “Dañina para grupos sensibles”**: **0 %** (probabilidad = 0.0).  \n\nEsta predicción se basa en el modelo Naive Bayes y no constituye consejo médico; si tienes condiciones de salud sensibles, sigue las recomendaciones de las autoridades sanitarias.",
+  "respuesta": "En la estación **LICEO FERNANDO VÉLEZ**, para el día **2025‑02‑26** (mañana) el modelo predice la categoría ICA **Aceptable**. La probabilidad de que la categoría sea **“Dañina para grupos sensibles”** es **0 %**.\n\n> Probabilidad = 0.0 % para “Dañina para grupos sensibles” (según el pronóstico de Naive Bayes).\n\nRecuerda que esta información es solo orientativa y no constituye consejo médico; si tienes condiciones respiratorias, sigue las recomendaciones de salud habituales.",
   "traza": [
    {
     "iteracion": 1,
@@ -229,26 +225,24 @@
      "fecha_predicha": "2025-02-26",
      "categoria_predicha": "Aceptable",
      "probabilidades": {
-      "Buena": 0.05,
-      "Aceptable": 0.95,
+      "Buena": 0.131,
+      "Aceptable": 0.869,
       "Dañina para grupos sensibles": 0.0,
       "Dañina o peor": 0.0
      },
      "pm25_hoy_ug_m3": 14.7,
      "variables_usadas": {
-      "nivel_hoy": "13-19",
-      "clase_ayer": "Aceptable",
-      "tendencia": "estable",
-      "temporada": "feb-abr",
+      "nivel_hoy": "15-16 µg/m³",
+      "nivel_semana": "15-16 µg/m³ (promedio de los últimos 7 días)",
       "dia_manana": "laboral",
-      "nivel_valle": "13-19"
+      "cambio_valle": "estable (+1.3 µg/m³ frente a ayer en el promedio del valle)"
      },
      "valor_real": {
       "pm25_ug_m3": 10.7,
       "categoria": "Buena"
      },
      "acierto": false,
-     "modelo": "Naive Bayes categórico (implementación propia); exactitud en el periodo de prueba: 77%"
+     "modelo": "Naive Bayes categórico (implementación propia); exactitud en el periodo de prueba: 79%"
     },
     "error": false
    }
@@ -257,7 +251,7 @@
  {
   "id": 7,
   "pregunta": "¿Cuál es el nivel máximo permisible de PM2.5 para 24 horas en Colombia?",
-  "respuesta": "Según la **Hoja metodológica del Índice de Calidad del Aire (ICA)**, el valor máximo permisible de PM2.5 para un promedio de 24 horas en Colombia es **54 µg/m³** (límite superior de la categoría “Buena”)【Fuente: Hoja metodológica del Índice de Calidad del Aire (ICA), p. 5】.  \n\nEste es el umbral que define la exposición considerada segura para la población; valores superiores indican deterioro de la calidad del aire y pueden requerir medidas de mitigación.  \n\n*Nota: la información es de carácter ambiental y no constituye consejo médico.*",
+  "respuesta": "El nivel máximo permisible de PM2.5 para una exposición de 24 horas en Colombia es **37 µg/m³** (vigente desde el 1 de julio de 2018)[\"cita\":\"[Fuente: Resolución 2254 de 2017: tablas 1, 2, 4 y 6 (transcripción), p. 1]\"}].",
   "traza": [
    {
     "iteracion": 1,
@@ -268,36 +262,36 @@
     "resultado": {
      "resultados": [
       {
-       "cita": "[Fuente: Hoja metodológica del Índice de Calidad del Aire (ICA), p. 14]",
-       "titulo": "Hoja metodológica del Índice de Calidad del Aire (ICA)",
-       "archivo": "ica_ideam.pdf",
-       "pagina": 14,
-       "similitud": 0.606,
-       "texto": "amhernandez@ideam.gov.co Teléfono: 57 (1) 3527160 Ext. 1601 Dirección: Calle 25D N. 96B- 70 Bogotá D. C., Colombia. Piso 2. Cítese como: Ideam (2023). Hoja metodológica del indicador Proporción de datos del Índice de Calidad del Aire – ICA, por autoridad ambiental (Versión 1,2). Sistema de Indicadores Ambientales de Colombia. Colombia. Instituto de Hidrología, Meteorología y Estudios Ambientales."
+       "cita": "[Fuente: Resolución 2254 de 2017: tablas 1, 2, 4 y 6 (transcripción), p. 1]",
+       "titulo": "Resolución 2254 de 2017: tablas 1, 2, 4 y 6 (transcripción)",
+       "archivo": "res_2254_2017_tablas.md",
+       "pagina": 1,
+       "similitud": 0.842,
+       "texto": "Este archivo transcribe esos valores a partir de las imágenes del mismo PDF y solo incluye los que se leen sin ambigüedad. Según la Resolución 2254 de 2017 (parágrafo 1 del artículo 2, página 3 del PDF), a partir del 1 de julio de 2018 el nivel máximo permisible de PM2.5 para un tiempo de exposición de 24 horas es de 37 µg/m³ y el de PM10 para 24 horas es de 75 µg/m³, de modo que 37 µg/m³ es el límite diario de PM2.5 vigente en Colombia."
       },
       {
-       "cita": "[Fuente: Hoja metodológica del Índice de Calidad del Aire (ICA), p. 5]",
-       "titulo": "Hoja metodológica del Índice de Calidad del Aire (ICA)",
-       "archivo": "ica_ideam.pdf",
-       "pagina": 5,
-       "similitud": 0.604,
-       "texto": "Tabla 2. Puntos de corte del Índice de Calidad del Aire Índice de Calidad del Aire Puntos de corte ICA Rango ICA Categoría PM10 µg/m3 24 horas PM2.5 µg/m3 24 horas CO µg/m3 8 horas SO2 µg/m3 1 hora NO2 µg/m3 1 hora O3 µg/m3 8 horas O3 µg/m3 1 hora5 0 - 50 Buena 0-54 0-12 0-5094 0-93 0-100 0- 106 --- 51 - 100 Aceptable 55- 154 13- 37 5095- 10819 94- 197 101- 189 107- 138 --- 4 Estaciones ubicadas en zonas de alto tráfico vehicular en épocas de intensa radiación solar."
+       "cita": "[Fuente: Resolución 2254 de 2017: tablas 1, 2, 4 y 6 (transcripción), p. 1]",
+       "titulo": "Resolución 2254 de 2017: tablas 1, 2, 4 y 6 (transcripción)",
+       "archivo": "res_2254_2017_tablas.md",
+       "pagina": 1,
+       "similitud": 0.623,
+       "texto": "Según la Resolución 2254 de 2017 (Tabla 2, niveles máximos permisibles para el año 2030, página 3 del PDF), a partir del 1 de enero de 2030 el nivel máximo permisible anual de PM2.5 será de 15 µg/m³, el anual de PM10 será de 30 µg/m³, el de SO2 para 24 horas será de 20 µg/m³ y el anual de NO2 será de 40 µg/m³."
       },
       {
-       "cita": "[Fuente: Plan de acción para la implementación del protocolo POECA (alcance 2019), p. 16]",
-       "titulo": "Plan de acción para la implementación del protocolo POECA (alcance 2019)",
-       "archivo": "poeca_plan_accion.pdf",
-       "pagina": 16,
-       "similitud": 0.598,
-       "texto": "En la figura 4 y 5 se presenta el c omportamiento del promedio diario de concentraciones de PM2.5durante el periodo. El 06 de marzo las estaciones de monitoreo reportaron un nuevo incremento de las concentraciones de PM2.5, alcanzando ese día el mayor promedio diario de concentración (69.1ug/m3) del periodo, este valor se alcanzó en la estación Medellín - Tanques La Y, (ver figura 4)."
+       "cita": "[Fuente: Resolución 2254 de 2017: tablas 1, 2, 4 y 6 (transcripción), p. 1]",
+       "titulo": "Resolución 2254 de 2017: tablas 1, 2, 4 y 6 (transcripción)",
+       "archivo": "res_2254_2017_tablas.md",
+       "pagina": 1,
+       "similitud": 0.617,
+       "texto": "Según la Resolución 2254 de 2017 (Tabla 1, niveles máximos permisibles de contaminantes criterio, página 3 del PDF), desde el 1 de enero de 2018 el nivel máximo permisible de PM2.5 es de 25 µg/m³ para un tiempo de exposición anual y de 50 µg/m³ para 24 horas, valor diario que bajó a 37 µg/m³ desde el 1 de julio de 2018."
       },
       {
-       "cita": "[Fuente: Hoja metodológica del Índice de Calidad del Aire (ICA), p. 9]",
-       "titulo": "Hoja metodológica del Índice de Calidad del Aire (ICA)",
-       "archivo": "ica_ideam.pdf",
-       "pagina": 9,
-       "similitud": 0.59,
-       "texto": "96B- 70 Bogotá D. C., Colombia 4. Ubicación principal para la consulta del indicador Física o digital Instituto de Hidrología, Meteorología y Estudios Ambientales – IDEAM. Calle 25D N. 96B- 70 Bogotá D. C. Piso 2 URL https://experience.arcgis.com/experience/568ddab184334f6b81a04d2fe9 aac262/page/Indicadores-Ambientales/ 5."
+       "cita": "[Fuente: Resolución 2254 de 2017: tablas 1, 2, 4 y 6 (transcripción), p. 1]",
+       "titulo": "Resolución 2254 de 2017: tablas 1, 2, 4 y 6 (transcripción)",
+       "archivo": "res_2254_2017_tablas.md",
+       "pagina": 1,
+       "similitud": 0.611,
+       "texto": "Según la Resolución 2254 de 2017 (Tabla 4, niveles de prevención, alerta y emergencia, página 6 del PDF), para PM2.5 con un tiempo de exposición de 24 horas el nivel de prevención corresponde a concentraciones de 38 a 55 µg/m³, el nivel de alerta a concentraciones de 56 a 150 µg/m³ y el nivel de emergencia a concentraciones iguales o superiores a 151 µg/m³, declaraciones aplicables desde el 1 de julio de 2018."
       }
      ]
     },
@@ -308,22 +302,30 @@
  {
   "id": 8,
   "pregunta": "¿Qué rangos de PM2.5 corresponden a los niveles de prevención, alerta y emergencia?",
-  "respuesta": "Los rangos de concentración de PM2.5 (promedio de 24 h) que determinan los niveles de contingencia atmosférica en el Valle de Aburrá son:\n\n| Nivel | Concentración (µg/m³) |\n|-------|----------------------|\n| **Prevención** | 38 – 55 |\n| **Alerta** | 56 – 150 |\n| **Emergencia** | ≥ 151 |\n\nEstos valores están establecidos en la Tabla 4 de la Resolución 2254 de 2017 del Ministerio de Ambiente y Desarrollo Sostenible [Fuente: Resolución 2254 de 2017 (norma de calidad del aire), p. 13].",
+  "respuesta": "Los rangos de concentración de **PM2.5 (exposición de 24 h)** que definen los niveles de la ICA son:\n\n- **Prevención:** 38 – 55 µg/m³.  \n- **Alerta:** 56 – 150 µg/m³.  \n- **Emergencia:** ≥ 151 µg/m³.\n\nEstos valores están establecidos en la **Resolución 2254 de 2017**, Tabla 4, y son aplicables desde el 1 de julio 2018[Fuente: Resolución 2254 de 2017: tablas 1, 2, 4 y 6 (transcripción), p. 1].",
   "traza": [
    {
     "iteracion": 1,
     "herramienta": "search_docs",
     "argumentos": {
-     "query": "rangos de PM2.5 niveles de prevención alerta emergencia ICA Valle de Aburrá"
+     "query": "rangos PM2.5 niveles prevención alerta emergencia ICA"
     },
     "resultado": {
      "resultados": [
+      {
+       "cita": "[Fuente: Resolución 2254 de 2017: tablas 1, 2, 4 y 6 (transcripción), p. 1]",
+       "titulo": "Resolución 2254 de 2017: tablas 1, 2, 4 y 6 (transcripción)",
+       "archivo": "res_2254_2017_tablas.md",
+       "pagina": 1,
+       "similitud": 0.806,
+       "texto": "Según la Resolución 2254 de 2017 (Tabla 4, niveles de prevención, alerta y emergencia, página 6 del PDF), para PM2.5 con un tiempo de exposición de 24 horas el nivel de prevención corresponde a concentraciones de 38 a 55 µg/m³, el nivel de alerta a concentraciones de 56 a 150 µg/m³ y el nivel de emergencia a concentraciones iguales o superiores a 151 µg/m³, declaraciones aplicables desde el 1 de julio de 2018."
+      },
       {
        "cita": "[Fuente: Resolución 2254 de 2017 (norma de calidad del aire), p. 6]",
        "titulo": "Resolución 2254 de 2017 (norma de calidad del aire)",
        "archivo": "res_2254_2017.pdf",
        "pagina": 6,
-       "similitud": 0.79,
+       "similitud": 0.764,
        "texto": "*Aplicable a concentraciones mayores o iguales a las establecidas en la columna de emergencia. **Las declaraciones de niveles de Prevención, Alerta o Emergencia por PM 2.5 serán aplicables a partir del 1 de julio de 2018. Parágrafo. Cuando en un mismo punto y para el mismo periodo se realice la medición de varios contaminantes, prevalecerán las concentraciones más críticas para declarar alguno de los niveles establecidos en la Tabla número 4. Artículo 11."
       },
       {
@@ -331,24 +333,16 @@
        "titulo": "Plan de acción para la implementación del protocolo POECA (alcance 2019)",
        "archivo": "poeca_plan_accion.pdf",
        "pagina": 16,
-       "similitud": 0.755,
+       "similitud": 0.712,
        "texto": "A raíz de ese incremento sumado a las condiciones meteorológicas desfavorables para la dispersión, de conformidad con el informe técnico del SIATA se toma la decisión de declarar el nivel de Alerta para los días 7,8 y 9 de marzo. Figura 4. Comportamiento del promedio diario de las concentraciones de PM2.5 asociado a este contaminante en las estaciones de representatividad poblacional para el periodo enero-abril de 2018."
       },
       {
-       "cita": "[Fuente: Plan de acción para la implementación del protocolo POECA (alcance 2019), p. 13]",
-       "titulo": "Plan de acción para la implementación del protocolo POECA (alcance 2019)",
-       "archivo": "poeca_plan_accion.pdf",
-       "pagina": 13,
-       "similitud": 0.737,
-       "texto": "Niveles de contingencia atmosférica en el Valle de Aburrá. Contaminante Tiempo de exposición Prevención (µg/m3) Alerta (µg/m3) Emergencia (µg/m3) PM10 24 horas 155-254 255-354 ≥355 PM2.5 24 horas 38-55 56-150 ≥151 O3 8 horas 139-167 168-207 ≥208 SO2 1 hora 198-486 487-797 ≥798 NO2 1 hora 190-677 678-1221 ≥1222 CO 8 horas 10820-14254 14255-17688 ≥17689 Fuente: Resolución 2254 de 2017. Ministerio de Ambiente y Desarrollo Sostenible."
-      },
-      {
-       "cita": "[Fuente: Resolución 2254 de 2017 (norma de calidad del aire), p. 5]",
-       "titulo": "Resolución 2254 de 2017 (norma de calidad del aire)",
-       "archivo": "res_2254_2017.pdf",
-       "pagina": 5,
-       "similitud": 0.706,
-       "texto": "Artículo 10. Rangos de concentración para la declaratoria de los niveles de Prevención, Alerta o Emergencia. Los rangos de concentración y el tiempo de exposición bajo la cuales se deben declarar por parte de las autoridades ambientales competentes los niveles de prevención, alerta o emergencia, se establecen en la Tabla No. 4 de la presente resolución. Tabla No. 4. Concentraciones (μg/m3) para los Niveles de Prevención, Alerta o Emergencia"
+       "cita": "[Fuente: Resolución 2254 de 2017: tablas 1, 2, 4 y 6 (transcripción), p. 1]",
+       "titulo": "Resolución 2254 de 2017: tablas 1, 2, 4 y 6 (transcripción)",
+       "archivo": "res_2254_2017_tablas.md",
+       "pagina": 1,
+       "similitud": 0.702,
+       "texto": "Según la Resolución 2254 de 2017 (Tabla 4, página 6 del PDF), para PM10 con un tiempo de exposición de 24 horas el nivel de prevención corresponde a concentraciones de 155 a 254 µg/m³, el de alerta de 255 a 354 µg/m³ y el de emergencia a 355 µg/m³ o más."
       }
      ]
     },
@@ -359,7 +353,7 @@
  {
   "id": 9,
   "pregunta": "¿Qué es el POECA y quién declara un episodio de contaminación?",
-  "respuesta": "El **POECA** (Plan Operacional para Enfrentar Episodios de Contaminación Atmosférica) es el conjunto de medidas operativas que forman parte del Plan Integral de Gestión de la Calidad del Aire en el Valle de Aburrá (PIGECA 2017‑2030) y tiene como objetivo reducir rápidamente los niveles de contaminación y proteger a la población [Fuente: Plan de acción para la implementación del protocolo POECA (alcance 2019), p. 12].\n\nLa **declaratoria de un episodio de contaminación** la realiza la **Área Metropolitana del Valle de Aburrá (AMVA)**, mediante resoluciones metropolitanas que establecen los niveles de alerta (por ejemplo, alerta naranja) y activan el protocolo POECA [Fuente: Resolución Metropolitana que declara el periodo de gestión de episodios (segundo semestre de 2023), p. 1; Plan de acción para la implementación del protocolo POECA (alcance 2019), p. 41].",
+  "respuesta": "El **POECA** (Plan Operacional para Enfrentar Episodios de Contaminación Atmosférica) es uno de los ejes temáticos del Plan Integral de Gestión de la Calidad del Aire en el Valle de Aburrá (PIGECA 2017‑2030) y agrupa medidas destinadas a reducir rápidamente los niveles de contaminación y a proteger a la población frente a episodios críticos [Fuente: Plan de acción para la implementación del protocolo POECA (alcance 2019), p. 12].\n\nLa **declaratoria oficial de un episodio de contaminación** la realiza el Área Metropolitana del Valle de Aburrá (AMVA), que según los registros ha emitido 14 episodios entre febrero y marzo de 2017, aplicando los niveles de alerta correspondientes [Fuente: Plan de acción para la implementación del protocolo POECA (alcance 2019), p. 41].",
   "traza": [
    {
     "iteracion": 1,
@@ -410,7 +404,7 @@
  {
   "id": 10,
   "pregunta": "¿Cómo estará mañana el aire y qué se recomienda hacer en ese nivel?",
-  "respuesta": "**Estación:** VILLAHERMOSA  \n**Fecha:** 2025‑03‑13 (mañana)  \n**Categoría ICA prevista:** **Aceptable** (probabilidad ≈ 99.7 %)\n\nSegún la Resolución 2254 de 2017, la categoría “Aceptable” (ICA 51‑100, color amarillo) indica que *“posibles síntomas respiratorios pueden presentarse en grupos poblacionales sensibles”*【1†Fuente: Resolución 2254 de 2017 (norma de calidad del aire), p. 9】.\n\n**Recomendaciones (no son consejo médico):**  \n- Personas con asma, alergias u otras afecciones respiratorias deben limitar actividades al aire libre y, de ser necesario, usar mascarilla filtrante (N95 o equivalente).  \n- Mantener puertas y ventanas cerradas en espacios cerrados para reducir la exposición.  \n- Monitorear síntomas respiratorios y, si empeoran, consultar a un profesional de salud.  \n\nEstas medidas ayudan a proteger a los grupos sensibles mientras la calidad del aire se mantiene en nivel aceptable.",
+  "respuesta": "No pude completar la consulta por un problema con el servicio del modelo de lenguaje. Detalle: RateLimitError: Error code: 429 - Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m3a0gc1geeebp508r7w9yy2g` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 5829, Requested 2943. Please try again in 5.79s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing",
   "traza": [
    {
     "iteracion": 1,
@@ -425,26 +419,24 @@
      "fecha_predicha": "2025-03-13",
      "categoria_predicha": "Aceptable",
      "probabilidades": {
-      "Buena": 0.002,
-      "Aceptable": 0.997,
-      "Dañina para grupos sensibles": 0.001,
+      "Buena": 0.005,
+      "Aceptable": 0.995,
+      "Dañina para grupos sensibles": 0.0,
       "Dañina o peor": 0.0
      },
      "pm25_hoy_ug_m3": 23.5,
      "variables_usadas": {
-      "nivel_hoy": "20-27",
-      "clase_ayer": "Aceptable",
-      "tendencia": "estable",
-      "temporada": "feb-abr",
+      "nivel_hoy": "20-23 µg/m³",
+      "nivel_semana": "20-23 µg/m³ (promedio de los últimos 7 días)",
       "dia_manana": "laboral",
-      "nivel_valle": "20-27"
+      "cambio_valle": "baja (-2.6 µg/m³ frente a ayer en el promedio del valle)"
      },
      "valor_real": {
       "pm25_ug_m3": 19.7,
       "categoria": "Aceptable"
      },
      "acierto": true,
-     "modelo": "Naive Bayes categórico (implementación propia); exactitud en el periodo de prueba: 77%"
+     "modelo": "Naive Bayes categórico (implementación propia); exactitud en el periodo de prueba: 79%"
     },
     "error": false
    },
@@ -491,13 +483,57 @@
      ]
     },
     "error": false
+   },
+   {
+    "iteracion": 3,
+    "herramienta": "search_docs",
+    "argumentos": {
+     "query": "recomendaciones nivel aceptable ICA aire Valle de Aburrá grupos sensibles"
+    },
+    "resultado": {
+     "resultados": [
+      {
+       "cita": "[Fuente: Hoja metodológica del Índice de Calidad del Aire (ICA), p. 2]",
+       "titulo": "Hoja metodológica del Índice de Calidad del Aire (ICA)",
+       "archivo": "ica_ideam.pdf",
+       "pagina": 2,
+       "similitud": 0.708,
+       "texto": "Descripción del indicador Definición El Índice de Calidad del Aire (ICA) permite categorizar y correlacionar los niveles de inmisión de los contaminantes criterio obtenidos mediante las estaciones de monitoreo con posibles efectos adversos a la salud de la población expuesta. El ICA es un valor adimensional, entre 0 y 500, al cual se le asigna un color y una categoría, que, de menor a mayor, en orden de importancia tiene una relación con potenciales efectos a la salud."
+      },
+      {
+       "cita": "[Fuente: Resolución Metropolitana que declara el periodo de gestión de episodios (segundo semestre de 2023), p. 7]",
+       "titulo": "Resolución Metropolitana que declara el periodo de gestión de episodios (segundo semestre de 2023)",
+       "archivo": "amva_episodio_2023.pdf",
+       "pagina": 7,
+       "similitud": 0.696,
+       "texto": "poblacionales registren calidad de aire Dañina para Grupos Sensibles (ICA Naranja) y una probabilidad baja de que una estación reporte calidad de aire Dañina para la salud (ICA rojo). Por lo tanto, se plantea la necesidad de proyectar un calendario del comportamiento de la calidad del aire para el segundo semestre del año 2023, como instrumento para la definición del período de gestión de episodios de calidad del aire 27."
+      },
+      {
+       "cita": "[Fuente: Resolución Metropolitana que declara el periodo de gestión de episodios (segundo semestre de 2023), p. 5]",
+       "titulo": "Resolución Metropolitana que declara el periodo de gestión de episodios (segundo semestre de 2023)",
+       "archivo": "amva_episodio_2023.pdf",
+       "pagina": 5,
+       "similitud": 0.677,
+       "texto": "Por lo tanto y como medida para aplicar herramientas de gobernabilidad sobre fuentes de emisión al interior del Valle de Aburrá, y dar soporte a los planes que debe ejecutar la Entidad en el marco del Plan Operacional para enfrentar Episodios de Contaminac ión Atmosférica en el Área Metropolitana del Vallé de Aburrá (POECA), cuyo enfoque es la adopción de medidas de prevención para garantizar que la calidad de aire no pueda afectar negativamente a la población de su territorio, se presentará la"
+      },
+      {
+       "cita": "[Fuente: Resolución 2254 de 2017 (norma de calidad del aire), p. 9]",
+       "titulo": "Resolución 2254 de 2017 (norma de calidad del aire)",
+       "archivo": "res_2254_2017.pdf",
+       "pagina": 9,
+       "similitud": 0.677,
+       "texto": "Índice de Calidad del Aire (ICA). El ICA es un valor adimensional para reportar el estado de la calidad del aire en función de un código de colores al que están asociadas unos efectos generales que deben ser tenidos en cuenta para reducir la exposición a altas concentraciones por parte de la población. Este índice también será utilizado en el pronóstico de la calidad del aire. Artículo 19. Descripción general del ICA."
+      }
+     ]
+    },
+    "error": false
    }
   ]
  },
  {
   "id": 11,
   "pregunta": "¿Cuál fue el PM2.5 en la estación Marte el 2025-03-12?",
-  "respuesta": "Lo siento, pero no hay ninguna estación de monitoreo llamada **“Marte”** en la base de datos. Las estaciones disponibles son, por ejemplo, ALMACÉN GENERAL DE EPM, ALTAVISTA, TRÁFICO CENTRO, HOSPITAL MANUEL URIBE, entre otras.\n\nSi me indicas una de esas estaciones, podré consultar el valor de PM2.5 registrado el 12 de marzo de 2025. ¡Quedo atento a tu elección!",
+  "respuesta": "Lo siento, pero no hay ninguna estación de monitoreo llamada **“Marte”** en la base de datos. Las estaciones disponibles son, por ejemplo: ALMACÉN GENERAL DE EPM, ALTAVISTA, BIBLIOTECA FERNANDO B., TRÁFICO CENTRO, TRÁFICO SUR, UNIVERSIDAD CES, VILLAHERMOSA, entre otras.\n\nPor favor, indícame una de esas estaciones y la fecha que deseas consultar para poder obtener el valor de PM2.5.",
   "traza": [
    {
     "iteracion": 1,
@@ -544,53 +580,53 @@
  {
   "id": 12,
   "pregunta": "¿Cuál fue el PM2.5 en Tráfico Centro el 2027-06-01?",
-  "respuesta": "Lo siento, pero no disponemos de datos de PM2.5 para la estación **Tráfico Centro** en la fecha **2027‑06‑01**, ya que nuestro historial solo cubre el período del 1 de enero de 2022 al 31 de diciembre de 2025. Si necesita información dentro de ese rango, con gusto la busco.",
+  "respuesta": "Lo siento, pero los datos disponibles solo abarcan del 2022‑01‑01 al 2025‑12‑31. La fecha 2027‑06‑01 está fuera de ese rango, por lo que no puedo proporcionar el valor de PM2.5 para esa día. Si lo deseas, puedo buscar el valor para alguna fecha dentro del período disponible.",
   "traza": []
  },
  {
   "id": 13,
   "pregunta": "¿Qué multa se paga por incumplir el pico y placa ambiental?",
-  "respuesta": "Los documentos disponibles en la base de datos no contienen información sobre la multa que se paga por incumplir el pico y placa ambiental en el Valle de Aburrá. Si necesita ese dato, le recomiendo consultar la normativa oficial o la autoridad ambiental competente.",
+  "respuesta": "Los documentos disponibles en la base de datos no contienen información sobre la multa que se paga por incumplir el pico y placa ambiental. Por lo tanto, no puedo proporcionar ese dato. Si necesita información específica sobre sanciones, le recomiendo consultar la normativa municipal o la autoridad ambiental competente.",
   "traza": [
    {
     "iteracion": 1,
     "herramienta": "search_docs",
     "argumentos": {
-     "query": "multa pico y placa ambiental Valle de Aburrá"
+     "query": "pico y placa ambiental multa"
     },
     "resultado": {
      "resultados": [
       {
-       "cita": "[Fuente: Plan de acción para la implementación del protocolo POECA (alcance 2019), p. 43]",
-       "titulo": "Plan de acción para la implementación del protocolo POECA (alcance 2019)",
-       "archivo": "poeca_plan_accion.pdf",
-       "pagina": 43,
-       "similitud": 0.616,
-       "texto": "ambientales competentes (Corantioquia y Área Metropolitana del Valle de Aburrá)."
+       "cita": "[Fuente: Resolución 2254 de 2017 (norma de calidad del aire), p. 2]",
+       "titulo": "Resolución 2254 de 2017 (norma de calidad del aire)",
+       "archivo": "res_2254_2017.pdf",
+       "pagina": 2,
+       "similitud": 0.54,
+       "texto": "En mérito de lo expuesto, RESUELVE: CAPÍTULO I Objeto, ámbito de aplicación y niveles máximos permisibles de contaminantes en el aire Artículo 1°. Objeto y ámbito de aplicación."
       },
       {
-       "cita": "[Fuente: Plan de acción para la implementación del protocolo POECA (alcance 2019), p. 22]",
+       "cita": "[Fuente: Plan de acción para la implementación del protocolo POECA (alcance 2019), p. 5]",
        "titulo": "Plan de acción para la implementación del protocolo POECA (alcance 2019)",
        "archivo": "poeca_plan_accion.pdf",
-       "pagina": 22,
-       "similitud": 0.559,
-       "texto": "https://www.minuto30.com/nuevo-pico-y-placa-ambiental-declaran-el-estado-deprevencion-por-calidad-del-aire-en-el-valle-de-aburra/701834/. Replicar los comunicados oficiales:"
+       "pagina": 5,
+       "similitud": 0.537,
+       "texto": "Restricción vehicular en nivel de alerta. ...............................................................................................50 Tabla 4.7. Restricción vehicular por Emergencia Ambiental .............................................................................51 Tabla 4.8.Programa de fiscalización sector industrial. .........................................................................................54 Tabla 4.9."
       },
       {
-       "cita": "[Fuente: Resolución Metropolitana que declara el periodo de gestión de episodios (segundo semestre de 2023), p. 4]",
-       "titulo": "Resolución Metropolitana que declara el periodo de gestión de episodios (segundo semestre de 2023)",
-       "archivo": "amva_episodio_2023.pdf",
+       "cita": "[Fuente: Resolución 2254 de 2017 (norma de calidad del aire), p. 5]",
+       "titulo": "Resolución 2254 de 2017 (norma de calidad del aire)",
+       "archivo": "res_2254_2017.pdf",
+       "pagina": 5,
+       "similitud": 0.533,
+       "texto": "organismos responsables de la gestión de riesgo para que adopten las medidas a que haya lugar, entre ellas, la divulgación de medidas para reducir la exposición. Parágrafo 3°. Las autoridades ambientales que usen modelos de dispersión de contaminantes deberán basarse en los modelos recomendados por la Agencia de Protección Ambiental de los Estados Unidos (US-EPA) mientras el Ministerio de Ambiente y Desarrollo Sostenible adopta la Guía Nacional de Modelización de Calidad del Aire. Artículo 7°."
+      },
+      {
+       "cita": "[Fuente: Resolución 2254 de 2017 (norma de calidad del aire), p. 4]",
+       "titulo": "Resolución 2254 de 2017 (norma de calidad del aire)",
+       "archivo": "res_2254_2017.pdf",
        "pagina": 4,
-       "similitud": 0.546,
-       "texto": "En igual sentido, el Acuerdo Metropolitano No. 07 de 2022, señaló como factores adicionales que conllevan a la ocurrencia de episodios de contaminación atmosférica en el Valle de Aburrá: las características topográficas que determinan a un valle angosto y semicerrado, las condiciones meteorológicas de estabilidad atmosférica prolongada y baja ventilación y el aporte de contaminantes generados por eventos de origen natural, antrópico o tecnológico."
-      },
-      {
-       "cita": "[Fuente: Plan de acción para la implementación del protocolo POECA (alcance 2019), p. 65]",
-       "titulo": "Plan de acción para la implementación del protocolo POECA (alcance 2019)",
-       "archivo": "poeca_plan_accion.pdf",
-       "pagina": 65,
-       "similitud": 0.541,
-       "texto": "(2013). Inventario de Emisiones Atmosféricas del Valle de Aburrá, año base 2011. Medellín."
+       "similitud": 0.529,
+       "texto": "Parágrafo 2°. Cuando las concentraciones de contaminantes del aire excedan los niveles máximos permisibles definidos en las Tablas números 1, 2 o 3 según corresponda, las autoridades ambientales competentes informarán a las autoridades de salud y demás"
       }
      ]
     },
@@ -601,7 +637,7 @@
  {
   "id": 14,
   "pregunta": "¿Quién ganó el mundial de fútbol de 2014?",
-  "respuesta": "Lo siento, pero solo puedo ayudar con preguntas relacionadas con la calidad del aire (PM2.5) en el Valle de Aburrá. Si tienes alguna consulta sobre ese tema, estaré encantado de asistirte.",
+  "respuesta": "Lo siento, pero mi función es ayudar con información sobre la calidad del aire (PM2.5) en el Valle de Aburrá. No dispongo de datos sobre el Mundial de fútbol de 2014.",
   "traza": []
  }
 ]
