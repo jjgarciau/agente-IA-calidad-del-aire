@@ -157,9 +157,9 @@ def main() -> None:
             trazas_previas = json.loads(TRAZAS.read_text(encoding="utf-8")) if TRAZAS.exists() else []
             trazas = sorted([t for t in trazas_previas if t["id"] not in a.ids] + trazas, key=lambda t: t["id"])
 
-    df.to_csv(RESULTADOS, index=False, encoding="utf-8")
-    TRAZAS.write_text(json.dumps(trazas, ensure_ascii=False, indent=1), encoding="utf-8")
-    RESUMEN.write_text(resumen_markdown(df), encoding="utf-8")
+    df.to_csv(RESULTADOS, index=False, encoding="utf-8", lineterminator="\n")
+    TRAZAS.write_text(json.dumps(trazas, ensure_ascii=False, indent=1), encoding="utf-8", newline="\n")
+    RESUMEN.write_text(resumen_markdown(df), encoding="utf-8", newline="\n")
     print("\n" + "\n".join(resumen_markdown(df).splitlines()[4:9]))
     print(f"\nGuardado: {RESULTADOS}\n          {RESUMEN}\n          {TRAZAS}")
     print("Revisa cada respuesta y completa la columna respuesta_correcta (sí/no) en resultados.csv.")

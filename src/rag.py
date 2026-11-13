@@ -166,6 +166,7 @@ def construir_indice(docs_dir: Path | None = None, index_dir: Path | None = None
             indent=1,
         ),
         encoding="utf-8",
+        newline="\n",
     )
     return resumen
 

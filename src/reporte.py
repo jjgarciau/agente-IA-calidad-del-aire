@@ -97,7 +97,7 @@ def generar(destino: Path | None = None) -> Path:
     destino = Path(destino or config.ROOT / "RESULTADOS.md")
     lineas = ["# Resultados", "", f"Generado el {datetime.now():%Y-%m-%d %H:%M} con `python -m src.reporte` a partir de los archivos de la última corrida.", ""]
     lineas += seccion_datos() + seccion_modelo() + seccion_agente()
-    destino.write_text("\n".join(lineas), encoding="utf-8")
+    destino.write_text("\n".join(lineas), encoding="utf-8", newline="\n")
     return destino
 
 

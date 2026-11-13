@@ -16,6 +16,7 @@ def proyecto(tmp_path_factory):
     mp.setattr(config, "DATA_RAW", raiz / "data" / "raw")
     mp.setattr(config, "DAILY_CSV", raiz / "data" / "processed" / "pm25_diario.csv")
     mp.setattr(config, "STATIONS_CSV", raiz / "data" / "stations.csv")
+    mp.setattr(config, "DISCARDS_CSV", raiz / "data" / "processed" / "descartes_escala.csv")
     mp.setattr(config, "MODEL_PATH", raiz / "models" / "naive_bayes.json")
     mp.setattr(config, "METRICS_PATH", raiz / "models" / "metricas.json")
     mp.setattr(config, "DOCS_DIR", raiz / "docs")
@@ -24,7 +25,7 @@ def proyecto(tmp_path_factory):
 
     sintetico.escribir_crudo(config.DATA_RAW)
     horario = preprocess.limpiar_horario(preprocess.cargar_crudos())
-    diario, estaciones = preprocess.promedio_diario(horario)
+    diario, estaciones, _ = preprocess.promedio_diario(horario)
     config.DAILY_CSV.parent.mkdir(parents=True, exist_ok=True)
     diario.to_csv(config.DAILY_CSV, index=False, date_format="%Y-%m-%d")
     estaciones.to_csv(config.STATIONS_CSV, index=False)

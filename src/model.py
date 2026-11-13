@@ -81,7 +81,7 @@ class NaiveBayesCategorico:
     def guardar(self, ruta: Path, extra: dict | None = None) -> None:
         ruta = Path(ruta)
         ruta.parent.mkdir(parents=True, exist_ok=True)
-        ruta.write_text(json.dumps({**(extra or {}), "modelo": self.a_dict()}, ensure_ascii=False, indent=1), encoding="utf-8")
+        ruta.write_text(json.dumps({**(extra or {}), "modelo": self.a_dict()}, ensure_ascii=False, indent=1), encoding="utf-8", newline="\n")
 
     @classmethod
     def cargar(cls, ruta: Path) -> tuple["NaiveBayesCategorico", dict]:

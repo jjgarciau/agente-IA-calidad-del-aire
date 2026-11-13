@@ -57,7 +57,7 @@ def test_limpieza_y_promedio_diario():
     assert horario["pm25"].max() <= 500                     # se fue el centinela 2554
     assert not horario.duplicated(["estacion", "fecha_hora"]).any()
 
-    diario, estaciones = preprocess.promedio_diario(horario)
+    diario, estaciones, _ = preprocess.promedio_diario(horario)
     assert (diario["horas_validas"] >= config.HORAS_MINIMAS).all()
     assert "POLITÉCNICO JIC (S)" not in set(estaciones["estacion"])   # estación sin datos suficientes
     assert set(estaciones["estacion"]) == {e[1] for e in sintetico.ESTACIONES}
@@ -75,3 +75,43 @@ def test_carga_del_proyecto(proyecto):
     diario = preprocess.cargar_diario()
     assert pd.api.types.is_datetime64_any_dtype(diario["fecha"])
     assert len(preprocess.cargar_estaciones()) == 4
+
+
+def test_descarta_meses_con_escala_corrupta():
+    """Defecto real de la fuente: una estación sin punto decimal durante parte del periodo."""
+    crudo = sintetico.generar_crudo("2023-01-01", "2025-12-31", corrupta_hasta="2024-01-01")
+    horario = preprocess.limpiar_horario(crudo)
+
+    sucio = preprocess.agregar_diario(horario)
+    santa_2023 = sucio[(sucio["estacion"] == "SANTA ELENA") & (sucio["fecha"] < "2024-01-01")]
+    assert len(santa_2023) > 0 and santa_2023["pm25"].median() > 80        # sobreviven días con valores x10
+
+    diario, estaciones, descartes = preprocess.promedio_diario(horario)
+    limpio_2023 = diario[(diario["estacion"] == "SANTA ELENA") & (diario["fecha"] < "2024-01-01")]
+    assert limpio_2023.empty                                               # todo el periodo corrupto se fue
+    assert set(descartes["estacion"]) == {"SANTA ELENA"} and (descartes["razon"] > preprocess.RAZON_ESCALA).all()
+    assert descartes["dias_descartados"].sum() == len(santa_2023)
+    assert diario["pm25"].max() < 80
+    assert set(estaciones["estacion"]) == {e[1] for e in sintetico.ESTACIONES}   # la estación sigue, con 2024-2025
+
+    # Las demás estaciones no pierden ni un día, ni siquiera en la temporada alta.
+    for otra in ("TRÁFICO CENTRO", "VILLAHERMOSA", "CASA JUSTICIA"):
+        assert (diario["estacion"] == otra).sum() == (sucio["estacion"] == otra).sum()
+    fila = estaciones.set_index("estacion").loc["SANTA ELENA"]
+    assert fila["primer_dia"] >= "2024-01-01" and fila["dias_validos"] == (diario["estacion"] == "SANTA ELENA").sum()
+
+
+def test_datos_sanos_no_pierden_meses():
+    horario = preprocess.limpiar_horario(sintetico.generar_crudo("2023-01-01", "2024-12-31"))
+    _, _, descartes = preprocess.promedio_diario(horario)
+    assert descartes.empty
+
+
+def test_depurar_la_tabla_diaria_equivale_al_flujo_completo():
+    """La depuración solo depende de la tabla diaria: aplicarla a una tabla ya agregada da lo mismo."""
+    horario = preprocess.limpiar_horario(sintetico.generar_crudo("2023-01-01", "2025-12-31", corrupta_hasta="2024-01-01"))
+    completo, _, _ = preprocess.promedio_diario(horario)
+    previa = preprocess._con_dias_suficientes(preprocess.agregar_diario(horario), config.DIAS_MINIMOS_ESTACION)
+    desde_tabla, _ = preprocess.depurar_diario(previa)
+    columnas = ["fecha", "estacion", "pm25", "horas_validas", "categoria"]
+    pd.testing.assert_frame_equal(completo[columnas].reset_index(drop=True), desde_tabla[columnas].reset_index(drop=True))

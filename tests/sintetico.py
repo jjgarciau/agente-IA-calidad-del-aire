@@ -18,8 +18,26 @@ ESTACIONES = [
 ]
 
 
-def generar_crudo(desde: str = "2023-01-01", hasta: str = "2025-12-31", semilla: int = 7) -> pd.DataFrame:
-    """Mediciones horarias con estacionalidad (picos en feb-abr y oct-nov) y persistencia diaria."""
+def _sin_punto_decimal(df: pd.DataFrame, estacion: str, hasta: str) -> pd.DataFrame:
+    """Reproduce el defecto real de la fuente: la estación pierde el punto decimal antes de `hasta`.
+
+    Los dos primeros días de cada mes vienen con un decimal (39.9 -> "399") y el resto con dos (29.49 -> "2949").
+    """
+    df = df.copy()
+    afectadas = (df["nombre_est"] == estacion) & (df["med_fecha_inicio"] < hasta)
+    valores = df.loc[afectadas, "med_concentracion_estandar"].astype(float)
+    primeros = df.loc[afectadas, "med_fecha_inicio"].str[8:10].isin(["01", "02"])
+    df.loc[afectadas, "med_concentracion_estandar"] = [
+        (f"{v:.1f}" if p else f"{v:.2f}").replace(".", "") for v, p in zip(valores, primeros)
+    ]
+    return df
+
+
+def generar_crudo(desde: str = "2023-01-01", hasta: str = "2025-12-31", semilla: int = 7, corrupta_hasta: str | None = None) -> pd.DataFrame:
+    """Mediciones horarias con estacionalidad (picos en feb-abr y oct-nov) y persistencia diaria.
+
+    Con `corrupta_hasta`, la estación SANTA ELENA pierde el punto decimal antes de esa fecha.
+    """
     rng = np.random.default_rng(semilla)
     dias = pd.date_range(desde, hasta, freq="D")
     estacional = np.where(dias.month.isin([2, 3, 4]), 14.0, np.where(dias.month.isin([10, 11]), 6.0, 0.0))
@@ -45,6 +63,8 @@ def generar_crudo(desde: str = "2023-01-01", hasta: str = "2025-12-31", semilla:
                               f"{dia:%Y-%m-%d} {h:02d}:00:00", f"{valores[h]:.2f}"))
     df = pd.DataFrame(filas, columns=["estacion_id", "nombre_est", "municipio", "latitud", "longitud",
                                       "tipo_estacion", "med_fecha_inicio", "med_concentracion_estandar"])
+    if corrupta_hasta:
+        df = _sin_punto_decimal(df, "SANTA ELENA", corrupta_hasta)
     # Ruido realista: un valor centinela, un duplicado y una estación con un solo dato.
     df.loc[5, "med_concentracion_estandar"] = "2554"
     df = pd.concat([df, df.iloc[[10]]], ignore_index=True)

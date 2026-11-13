@@ -128,7 +128,7 @@ def main() -> None:
 
     modelo, metricas = entrenar(preprocess.cargar_diario(), a.test_desde)
     modelo.guardar(config.MODEL_PATH, extra={"clases": ica.CLASES, "variables": features.VARIABLES, "particion": metricas["particion"]})
-    config.METRICS_PATH.write_text(json.dumps(metricas, ensure_ascii=False, indent=1), encoding="utf-8")
+    config.METRICS_PATH.write_text(json.dumps(metricas, ensure_ascii=False, indent=1), encoding="utf-8", newline="\n")
     imprimir(metricas)
     print(f"\nGuardado: {config.MODEL_PATH}\n          {config.METRICS_PATH}")
 

@@ -23,6 +23,7 @@ load_dotenv(ROOT / ".env")
 DATA_RAW = ROOT / "data" / "raw"                      # CSV horarios por mes (no se suben)
 DAILY_CSV = ROOT / "data" / "processed" / "pm25_diario.csv"
 STATIONS_CSV = ROOT / "data" / "stations.csv"
+DISCARDS_CSV = ROOT / "data" / "processed" / "descartes_escala.csv"   # meses-estación descartados por escala corrupta
 MODEL_PATH = ROOT / "models" / "naive_bayes.json"
 METRICS_PATH = ROOT / "models" / "metricas.json"
 DOCS_DIR = ROOT / "docs"                              # PDFs del corpus RAG

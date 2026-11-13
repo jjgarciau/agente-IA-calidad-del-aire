@@ -118,7 +118,7 @@ def descargar(desde: date, hasta: date, destino: Path | None = None, forzar: boo
         if df.empty:
             print(f"{ini:%Y-%m}: sin datos")
             continue
-        df.to_csv(archivo, index=False, encoding="utf-8")
+        df.to_csv(archivo, index=False, encoding="utf-8", lineterminator="\n")
         total += len(df)
         print(f"{ini:%Y-%m}: {len(df):,} filas, {df['nombre_est'].nunique()} estaciones")
     return total
