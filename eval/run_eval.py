@@ -138,7 +138,7 @@ def resumen_markdown(df: pd.DataFrame) -> str:
 def main() -> None:
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("--ids", nargs="*", type=int, help="evaluar solo estas preguntas")
-    p.add_argument("--pausa", type=float, default=2.0, help="segundos entre preguntas (límite de peticiones)")
+    p.add_argument("--pausa", type=float, default=10.0, help="segundos entre preguntas (límite de tokens por minuto de Groq)")
     a = p.parse_args()
 
     preguntas = pd.read_csv(PREGUNTAS)

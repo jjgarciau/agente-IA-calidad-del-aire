@@ -158,7 +158,7 @@ def test_reintenta_ante_limite_de_peticiones(recursos, monkeypatch):
     limite = openai.RateLimitError("429", response=SimpleNamespace(status_code=429, headers={}, request=None), body=None)
     cliente = ClienteFalso([limite, limite, _respuesta("Hola.")])
     r = agent.run_agent("hola", recursos, client=cliente)
-    assert r.respuesta == "Hola." and esperas == [2, 4]
+    assert r.respuesta == "Hola." and esperas == agent.ESPERAS[:2]
 
 
 def test_fallo_del_proveedor_no_rompe(recursos, monkeypatch):
@@ -174,6 +174,8 @@ def test_fallo_del_proveedor_no_rompe(recursos, monkeypatch):
 def test_citas_quedan_en_formato_unico(recursos):
     assert agent.normalizar_citas("ok【1†Fuente: Resolución 2254 de 2017, p. 9】.") == "ok[Fuente: Resolución 2254 de 2017, p. 9]."
     assert agent.normalizar_citas("ok【Fuente: Hoja ICA, p. 5】") == "ok[Fuente: Hoja ICA, p. 5]"
+    pegada = 'es 37 µg/m³["cita":"[Fuente: Resolución 2254 de 2017: tablas, p. 1]"}].'
+    assert agent.normalizar_citas(pegada) == "es 37 µg/m³[Fuente: Resolución 2254 de 2017: tablas, p. 1]."
     intacta = "ok [Fuente: Resolución 2254 de 2017, p. 3] y 12 µg/m³"
     assert agent.normalizar_citas(intacta) == intacta
     cliente = ClienteFalso([_respuesta("El límite es 37 µg/m³【2†Fuente: Resolución 2254 de 2017, p. 3】.")])

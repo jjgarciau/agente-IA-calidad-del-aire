@@ -82,11 +82,16 @@ def normalizar_citas(texto: str) -> str:
     【1†Fuente: título, p. 9】. Se convierten a corchetes simples y se quita el índice.
     """
     texto = texto.replace("【", "[").replace("】", "]")
+    # A veces el modelo pega el campo JSON completo: ["cita":"[Fuente: ...]"}] -> [Fuente: ...]
+    texto = re.sub(r'\[\s*"?cita"?\s*:\s*"(\[Fuente:[^\]]*\])"\s*\}?\s*\]', r"\1", texto)
     return re.sub(r"\[\s*\d+\s*†\s*(?=Fuente:)", "[", texto)
 
 
-def _llamar_llm(client, intentos: int = 4, **kwargs):
-    """Llama al LLM reintentando con espera exponencial los fallos transitorios (429, red, 5xx)."""
+ESPERAS = [5, 15, 30, 60]   # segundos; el límite gratuito de Groq se mide en tokens por minuto
+
+
+def _llamar_llm(client, intentos: int = len(ESPERAS) + 1, **kwargs):
+    """Llama al LLM reintentando con espera creciente los fallos transitorios (429, red, 5xx)."""
     import openai
 
     transitorios = (openai.RateLimitError, openai.APIConnectionError, openai.APITimeoutError, openai.InternalServerError)
@@ -96,7 +101,7 @@ def _llamar_llm(client, intentos: int = 4, **kwargs):
         except transitorios:
             if i == intentos - 1:
                 raise
-            time.sleep(2 ** (i + 1))
+            time.sleep(ESPERAS[min(i, len(ESPERAS) - 1)])
 
 
 def _a_dict(mensaje) -> dict:
