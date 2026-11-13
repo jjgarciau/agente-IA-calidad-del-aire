@@ -17,7 +17,7 @@ from src.model import (
 
 def _datos_aleatorios(n=3000, semilla=0):
     rng = np.random.default_rng(semilla)
-    n_cat = [7, 4, 3, 3, 3, 7]
+    n_cat = [14, 14, 3, 5]
     y = rng.integers(0, 4, n)
     # Las variables dependen de la clase para que haya algo que aprender.
     X = np.column_stack([np.clip(y * (v // 4 + 1) + rng.integers(0, max(v // 2, 2), n), 0, v - 1) for v in n_cat])
@@ -75,12 +75,15 @@ def test_variables_sin_fuga_del_futuro(proyecto):
     for nombre, n in zip(features.NOMBRES, features.N_CATEGORIAS):
         assert tabla[nombre].max() < n
 
-    # Una fila concreta: sus variables solo dependen de hoy y de ayer, y el objetivo es mañana.
+    # Una fila concreta: sus variables solo dependen de hoy y de días anteriores, y el objetivo es mañana.
     fila = tabla[tabla["y"].notna()].iloc[200]
     serie = diario[diario["estacion"] == fila["estacion"]].set_index("fecha")["pm25"]
     assert fila["pm25_hoy"] == serie[fila["fecha"]]
-    assert fila["pm25_ayer"] == serie[fila["fecha"] - pd.Timedelta(days=1)]
+    ventana = serie[fila["fecha"] - pd.Timedelta(days=6): fila["fecha"]]            # 7 días que terminan hoy
+    assert fila["pm25_semana"] == pytest.approx(ventana.mean(), abs=0.05)
     assert fila["fecha_objetivo"] == fila["fecha"] + pd.Timedelta(days=1)
+    valle = diario.groupby("fecha")["pm25"].mean()
+    assert fila["cambio_valle_ug"] == pytest.approx(valle[fila["fecha"]] - valle[fila["fecha"] - pd.Timedelta(days=1)], abs=0.06)
     assert int(fila["y"]) == ica.clase(serie[fila["fecha_objetivo"]])
     assert int(fila["clase_hoy"]) == ica.clase(fila["pm25_hoy"])
 
@@ -98,4 +101,7 @@ def test_entrenamiento_completo(proyecto):
     assert 0 <= r["Naive Bayes (propio)"]["exactitud"] <= 1
     assert r["Naive Bayes (propio)"]["exactitud"] > r["Clase mayoritaria"]["exactitud"]
     assert len(metricas["ablacion"]) == len(features.NOMBRES)
+    v = metricas["validacion"]
+    assert v["ajuste"]["hasta"] < v["periodo"]["desde"] and v["periodo"]["hasta"] < config.TEST_DESDE    # validación dentro del entrenamiento
+    assert metricas["alpha"] == v["alpha"] and set(v["resultados"]) == set(r)
     assert np.array(r["Persistencia"]["matriz_confusion"]).sum() == metricas["particion"]["prueba"]["n"]

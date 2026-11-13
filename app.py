@@ -113,7 +113,7 @@ if prediccion:
     else:
         tarjeta(c3, f"Valor real del {manana:%Y-%m-%d}", "—", "aún sin dato")
 else:
-    tarjeta(c2, f"Predicción para el {manana:%Y-%m-%d}", "No disponible", "falta el dato de hoy o de ayer" if HAY_MODELO else "modelo sin entrenar")
+    tarjeta(c2, f"Predicción para el {manana:%Y-%m-%d}", "No disponible", "falta el dato de hoy" if HAY_MODELO else "modelo sin entrenar")
     tarjeta(c3, f"Valor real del {manana:%Y-%m-%d}", "—")
 if len(del_dia):
     promedio = float(del_dia["pm25"].mean())
@@ -259,13 +259,13 @@ with tab_panel:
             st.plotly_chart(figura_probabilidades(), width="stretch", config={"displayModeBar": False})
             v = prediccion["variables_usadas"]
             st.caption(
-                f"Naive Bayes con lo conocido el {fecha:%Y-%m-%d}: nivel de hoy {v['nivel_hoy']} µg/m³, ayer «{v['clase_ayer']}», "
-                f"tendencia {v['tendencia']}, temporada {v['temporada']}, día objetivo {v['dia_manana']}, valle {v['nivel_valle']} µg/m³."
+                f"Naive Bayes con lo conocido el {fecha:%Y-%m-%d}: nivel de hoy {v['nivel_hoy']}; "
+                f"nivel de la semana {v['nivel_semana']}; día objetivo {v['dia_manana']}; valle {v['cambio_valle']}."
             )
         elif not HAY_MODELO:
             st.warning("El modelo aún no está entrenado. Ejecuta `python -m src.train`.")
         else:
-            st.info("No hay predicción para esta fecha: el modelo necesita un dato válido de este día y del anterior.")
+            st.info("No hay predicción para esta fecha: el modelo necesita un promedio diario válido de este día.")
         panel_chat()
 
 with tab_modelo:
@@ -287,6 +287,22 @@ with tab_modelo:
         st.dataframe(tabla, hide_index=True, width="stretch",
                      column_config={c: st.column_config.NumberColumn(format="%.3f") for c in tabla.columns[1:]})
         st.caption("«Episodio» = Dañina para grupos sensibles o peor, que es lo que interesa alertar.")
+
+        v = m.get("validacion", {})
+        if "resultados" in v:
+            episodios_prueba = sum(n for clase, n in p["prueba"]["clases"].items() if ica.CLASES.index(clase) >= ica.CLASE_EPISODIO)
+            episodios_validacion = sum(n for clase, n in v["periodo"]["clases"].items() if ica.CLASES.index(clase) >= ica.CLASE_EPISODIO)
+            st.markdown(f"**Validación ({v['periodo']['desde']} a {v['periodo']['hasta']})**")
+            st.caption(
+                f"El periodo de prueba solo tiene {episodios_prueba} días de episodio, así que allí la precisión y el recall de episodio no son estimables. "
+                f"El año de validación tiene {episodios_validacion}, pero se usó para elegir α y las variables: sus cifras son optimistas."
+            )
+            tabla_v = pd.DataFrame(
+                [{"Modelo": k, "Exactitud": r["exactitud"], "F1-macro": r["f1_macro"], "Precisión de episodio": r["precision_episodio"], "Recall de episodio": r["recall_episodio"]}
+                 for k, r in v["resultados"].items()]
+            )
+            st.dataframe(tabla_v, hide_index=True, width="stretch",
+                         column_config={c: st.column_config.NumberColumn(format="%.3f") for c in tabla_v.columns[1:]})
 
         a, b = st.columns(2, gap="large")
         with a:

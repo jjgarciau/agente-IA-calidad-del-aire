@@ -196,7 +196,7 @@ class Recursos:
         )
 
     def predecir(self, estacion: str, fecha: pd.Timestamp) -> dict | None:
-        """Predicción para el día siguiente a `fecha`; None si faltan datos de ese día o del anterior."""
+        """Predicción para el día siguiente a `fecha`; None si la estación no tiene dato válido ese día."""
         if (estacion, fecha) not in self.tabla.index:
             return None
         fila = self.tabla.loc[(estacion, fecha)]
@@ -226,8 +226,8 @@ class Recursos:
         prediccion = self.predecir(est, f)
         if prediccion is None:
             return _error(
-                f"No se puede predecir desde {f:%Y-%m-%d} en {est}: el modelo necesita un dato válido "
-                "de ese día y del anterior.",
+                f"No se puede predecir desde {f:%Y-%m-%d} en {est}: el modelo necesita un promedio diario "
+                "válido de ese día.",
                 **self._fechas_cercanas(self.tabla.index, est, f),
             )
         exactitud = self.metricas.get("resultados", {}).get("Naive Bayes (propio)", {}).get("exactitud")

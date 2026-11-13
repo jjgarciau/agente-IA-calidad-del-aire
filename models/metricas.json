@@ -7,65 +7,70 @@
  ],
  "variables": {
   "nivel_hoy": [
-   "0-12",
-   "13-19",
-   "20-27",
-   "28-37",
-   "38-44",
-   "45-55",
+   "0-7",
+   "8-10",
+   "11-12",
+   "13-14",
+   "15-16",
+   "17-19",
+   "20-23",
+   "24-27",
+   "28-32",
+   "33-37",
+   "38-41",
+   "42-47",
+   "48-55",
    "56 o más"
   ],
-  "clase_ayer": [
-   "Buena",
-   "Aceptable",
-   "Dañina para grupos sensibles",
-   "Dañina o peor"
-  ],
-  "tendencia": [
-   "baja",
-   "estable",
-   "sube"
-  ],
-  "temporada": [
-   "resto del año",
-   "feb-abr",
-   "oct-nov"
+  "nivel_semana": [
+   "0-7",
+   "8-10",
+   "11-12",
+   "13-14",
+   "15-16",
+   "17-19",
+   "20-23",
+   "24-27",
+   "28-32",
+   "33-37",
+   "38-41",
+   "42-47",
+   "48-55",
+   "56 o más"
   ],
   "dia_manana": [
    "laboral",
    "sábado",
    "domingo"
   ],
-  "nivel_valle": [
-   "0-12",
-   "13-19",
-   "20-27",
-   "28-37",
-   "38-44",
-   "45-55",
-   "56 o más"
+  "cambio_valle": [
+   "baja fuerte",
+   "baja",
+   "estable",
+   "sube",
+   "sube fuerte"
   ]
  },
  "particion": {
   "test_desde": "2025-01-01",
   "entrenamiento": {
-   "n": 12830,
-   "desde": "2022-01-03",
+   "n": 12883,
+   "desde": "2022-01-02",
    "hasta": "2024-12-31",
    "clases": {
-    "Buena": 2672,
-    "Aceptable": 9574,
-    "Dañina para grupos sensibles": 223,
-    "Dañina o peor": 361
+    "Buena": 2806,
+    "Aceptable": 9851,
+    "Dañina para grupos sensibles": 225,
+    "Dañina o peor": 1
    }
   },
   "prueba": {
-   "n": 7461,
+   "n": 7682,
    "desde": "2025-01-01",
    "hasta": "2025-12-31",
    "clases": {
-    "Buena": 2713,
-    "Aceptable": 4742,
+    "Buena": 2809,
+    "Aceptable": 4867,
     "Dañina para grupos sensibles": 6,
     "Dañina o peor": 0
    }
@@ -75,51 +80,212 @@
  "validacion_alpha": [
   {
    "alpha": 0.1,
-   "f1_macro": 0.5013,
-   "exactitud": 0.7978
+   "f1_macro": 0.5195,
+   "exactitud": 0.8109,
+   "recall_episodio": 0.625
   },
   {
    "alpha": 0.5,
-   "f1_macro": 0.4968,
-   "exactitud": 0.7967
+   "f1_macro": 0.5171,
+   "exactitud": 0.8099,
+   "recall_episodio": 0.625
   },
   {
    "alpha": 1.0,
-   "f1_macro": 0.4968,
-   "exactitud": 0.7967
+   "f1_macro": 0.5127,
+   "exactitud": 0.8107,
+   "recall_episodio": 0.565
   },
   {
    "alpha": 5.0,
-   "f1_macro": 0.4923,
-   "exactitud": 0.7969
+   "f1_macro": 0.5144,
+   "exactitud": 0.8178,
+   "recall_episodio": 0.475
   },
   {
    "alpha": 10.0,
-   "f1_macro": 0.4917,
-   "exactitud": 0.7969
+   "f1_macro": 0.4982,
+   "exactitud": 0.8194,
+   "recall_episodio": 0.365
   },
   {
    "alpha": 50.0,
-   "f1_macro": 0.4314,
-   "exactitud": 0.7978
+   "f1_macro": 0.3809,
+   "exactitud": 0.8183,
+   "recall_episodio": 0.0
   }
  ],
+ "validacion": {
+  "alpha": 0.1,
+  "alphas": [
+   {
+    "alpha": 0.1,
+    "f1_macro": 0.5195,
+    "exactitud": 0.8109,
+    "recall_episodio": 0.625
+   },
+   {
+    "alpha": 0.5,
+    "f1_macro": 0.5171,
+    "exactitud": 0.8099,
+    "recall_episodio": 0.625
+   },
+   {
+    "alpha": 1.0,
+    "f1_macro": 0.5127,
+    "exactitud": 0.8107,
+    "recall_episodio": 0.565
+   },
+   {
+    "alpha": 5.0,
+    "f1_macro": 0.5144,
+    "exactitud": 0.8178,
+    "recall_episodio": 0.475
+   },
+   {
+    "alpha": 10.0,
+    "f1_macro": 0.4982,
+    "exactitud": 0.8194,
+    "recall_episodio": 0.365
+   },
+   {
+    "alpha": 50.0,
+    "f1_macro": 0.3809,
+    "exactitud": 0.8183,
+    "recall_episodio": 0.0
+   }
+  ],
+  "ajuste": {
+   "n": 5425,
+   "desde": "2022-01-02",
+   "hasta": "2024-01-01"
+  },
+  "periodo": {
+   "n": 7458,
+   "desde": "2024-01-02",
+   "hasta": "2024-12-31",
+   "clases": {
+    "Buena": 1751,
+    "Aceptable": 5507,
+    "Dañina para grupos sensibles": 199,
+    "Dañina o peor": 1
+   }
+  },
+  "resultados": {
+   "Clase mayoritaria": {
+    "exactitud": 0.7384,
+    "f1_macro": 0.2124,
+    "precision_episodio": 0.0,
+    "recall_episodio": 0.0,
+    "matriz_confusion": [
+     [
+      0,
+      1751,
+      0,
+      0
+     ],
+     [
+      0,
+      5507,
+      0,
+      0
+     ],
+     [
+      0,
+      199,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0,
+      0
+     ]
+    ]
+   },
+   "Persistencia": {
+    "exactitud": 0.8037,
+    "f1_macro": 0.5139,
+    "precision_episodio": 0.5594,
+    "recall_episodio": 0.565,
+    "matriz_confusion": [
+     [
+      1111,
+      640,
+      0,
+      0
+     ],
+     [
+      646,
+      4772,
+      89,
+      0
+     ],
+     [
+      0,
+      87,
+      111,
+      1
+     ],
+     [
+      0,
+      0,
+      1,
+      0
+     ]
+    ]
+   },
+   "Naive Bayes (propio)": {
+    "exactitud": 0.8109,
+    "f1_macro": 0.5195,
+    "precision_episodio": 0.4717,
+    "recall_episodio": 0.625,
+    "matriz_confusion": [
+     [
+      1234,
+      517,
+      0,
+      0
+     ],
+     [
+      677,
+      4690,
+      140,
+      0
+     ],
+     [
+      0,
+      75,
+      124,
+      0
+     ],
+     [
+      0,
+      0,
+      1,
+      0
+     ]
+    ]
+   }
+  }
+ },
  "resultados": {
   "Clase mayoritaria": {
-   "exactitud": 0.6356,
-   "f1_macro": 0.2591,
+   "exactitud": 0.6336,
+   "f1_macro": 0.2586,
    "precision_episodio": 0.0,
    "recall_episodio": 0.0,
    "matriz_confusion": [
     [
      0,
-     2713,
+     2809,
      0,
      0
     ],
     [
      0,
-     4742,
+     4867,
      0,
      0
     ],
@@ -138,21 +304,21 @@
    ]
   },
   "Persistencia": {
-   "exactitud": 0.7817,
-   "f1_macro": 0.5102,
+   "exactitud": 0.7816,
+   "f1_macro": 0.5103,
    "precision_episodio": 0.0,
    "recall_episodio": 0.0,
    "matriz_confusion": [
     [
-     1910,
-     803,
+     1972,
+     837,
      0,
      0
     ],
     [
-     814,
-     3922,
-     6,
+     828,
+     4032,
+     7,
      0
     ],
     [
@@ -170,27 +336,27 @@
    ]
   },
   "Naive Bayes (propio)": {
-   "exactitud": 0.7695,
-   "f1_macro": 0.5041,
-   "precision_episodio": 0.0,
-   "recall_episodio": 0.0,
+   "exactitud": 0.7915,
+   "f1_macro": 0.5504,
+   "precision_episodio": 0.0588,
+   "recall_episodio": 0.1667,
    "matriz_confusion": [
     [
-     1972,
-     741,
+     2197,
+     612,
      0,
      0
     ],
     [
-     965,
-     3769,
-     8,
+     969,
+     3882,
+     16,
      0
     ],
     [
      0,
-     6,
-     0,
+     5,
+     1,
      0
     ],
     [
@@ -205,179 +371,167 @@
  "ablacion": [
   {
    "sin_variable": "nivel_hoy",
-   "exactitud": 0.7486,
-   "f1_macro": 0.4778,
+   "exactitud": 0.7902,
+   "f1_macro": 0.5139,
    "recall_episodio": 0.0
   },
   {
-   "sin_variable": "clase_ayer",
-   "exactitud": 0.768,
-   "f1_macro": 0.4999,
-   "recall_episodio": 0.0
-  },
-  {
-   "sin_variable": "tendencia",
-   "exactitud": 0.7696,
-   "f1_macro": 0.5024,
-   "recall_episodio": 0.0
-  },
-  {
-   "sin_variable": "temporada",
-   "exactitud": 0.7798,
-   "f1_macro": 0.51,
+   "sin_variable": "nivel_semana",
+   "exactitud": 0.7782,
+   "f1_macro": 0.4963,
    "recall_episodio": 0.0
   },
   {
    "sin_variable": "dia_manana",
-   "exactitud": 0.7685,
-   "f1_macro": 0.5033,
-   "recall_episodio": 0.0
+   "exactitud": 0.7909,
+   "f1_macro": 0.552,
+   "recall_episodio": 0.1667
   },
   {
-   "sin_variable": "nivel_valle",
-   "exactitud": 0.773,
-   "f1_macro": 0.498,
+   "sin_variable": "cambio_valle",
+   "exactitud": 0.7967,
+   "f1_macro": 0.5242,
    "recall_episodio": 0.0
   }
  ],
  "por_estacion": [
   {
    "estacion": "ALMACÉN GENERAL DE EPM",
-   "n": 294,
-   "naive_bayes": 0.7755,
-   "persistencia": 0.7823
+   "n": 311,
+   "naive_bayes": 0.8167,
+   "persistencia": 0.7846
   },
   {
    "estacion": "ALTAVISTA",
-   "n": 326,
-   "naive_bayes": 0.9018,
-   "persistencia": 0.9202
+   "n": 335,
+   "naive_bayes": 0.9313,
+   "persistencia": 0.9224
   },
   {
    "estacion": "BIBLIOTECA FERNANDO B.",
-   "n": 320,
-   "naive_bayes": 0.6906,
-   "persistencia": 0.7031
+   "n": 331,
+   "naive_bayes": 0.716,
+   "persistencia": 0.6918
   },
   {
    "estacion": "CASA JUSTICIA",
-   "n": 322,
-   "naive_bayes": 0.823,
-   "persistencia": 0.8571
+   "n": 331,
+   "naive_bayes": 0.8792,
+   "persistencia": 0.852
   },
   {
    "estacion": "CIUDADELA EDUCATIVA",
-   "n": 349,
-   "naive_bayes": 0.7937,
-   "persistencia": 0.8166
+   "n": 353,
+   "naive_bayes": 0.7989,
+   "persistencia": 0.8102
   },
   {
    "estacion": "ESCUELA JOAQUÍN A.",
-   "n": 328,
-   "naive_bayes": 0.6829,
-   "persistencia": 0.7287
+   "n": 337,
+   "naive_bayes": 0.6825,
+   "persistencia": 0.724
   },
   {
    "estacion": "FISCALÍA SECTOR CARIBE",
-   "n": 323,
-   "naive_bayes": 0.8173,
-   "persistencia": 0.8173
+   "n": 330,
+   "naive_bayes": 0.8333,
+   "persistencia": 0.8182
   },
   {
    "estacion": "HOSPITAL",
-   "n": 344,
-   "naive_bayes": 0.7122,
-   "persistencia": 0.7006
+   "n": 348,
+   "naive_bayes": 0.7126,
+   "persistencia": 0.7011
   },
   {
    "estacion": "HOSPITAL MANUEL URIBE",
-   "n": 340,
-   "naive_bayes": 0.6618,
-   "persistencia": 0.6794
+   "n": 346,
+   "naive_bayes": 0.6705,
+   "persistencia": 0.6821
   },
   {
    "estacion": "I.E. CIRO MENDIA",
-   "n": 324,
-   "naive_bayes": 0.75,
-   "persistencia": 0.7593
+   "n": 336,
+   "naive_bayes": 0.7738,
+   "persistencia": 0.7589
   },
   {
    "estacion": "I.E. CONCEJO MUNICIPAL",
-   "n": 342,
-   "naive_bayes": 0.8304,
-   "persistencia": 0.8333
+   "n": 346,
+   "naive_bayes": 0.8497,
+   "persistencia": 0.8324
   },
   {
    "estacion": "I.E. JOSÉ FÉLIX",
-   "n": 322,
-   "naive_bayes": 0.6646,
-   "persistencia": 0.6708
+   "n": 332,
+   "naive_bayes": 0.6837,
+   "persistencia": 0.6717
   },
   {
    "estacion": "I.E. PEDRO JUSTO B.",
-   "n": 327,
-   "naive_bayes": 0.8318,
-   "persistencia": 0.8471
+   "n": 337,
+   "naive_bayes": 0.8902,
+   "persistencia": 0.8457
   },
   {
    "estacion": "I.E. RAFAEL J. MEJÍA",
-   "n": 342,
-   "naive_bayes": 0.6901,
-   "persistencia": 0.6842
+   "n": 348,
+   "naive_bayes": 0.6868,
+   "persistencia": 0.6839
   },
   {
    "estacion": "LA TABLAZA I.E JOSE ANTONIO GALAN",
-   "n": 298,
-   "naive_bayes": 0.8221,
-   "persistencia": 0.8423
+   "n": 314,
+   "naive_bayes": 0.8567,
+   "persistencia": 0.8471
   },
   {
    "estacion": "LICEO FERNANDO VÉLEZ",
-   "n": 316,
-   "naive_bayes": 0.7184,
-   "persistencia": 0.7437
+   "n": 330,
+   "naive_bayes": 0.7364,
+   "persistencia": 0.7364
   },
   {
    "estacion": "PARQUE BIBLIOTECA TOMÁS CARRASQUILLA - LA QUINTANA",
-   "n": 342,
-   "naive_bayes": 0.7135,
-   "persistencia": 0.7281
+   "n": 347,
+   "naive_bayes": 0.7435,
+   "persistencia": 0.7291
   },
   {
    "estacion": "SANTA ELENA",
-   "n": 278,
-   "naive_bayes": 0.8777,
-   "persistencia": 0.9137
+   "n": 295,
+   "naive_bayes": 0.9288,
+   "persistencia": 0.9186
   },
   {
    "estacion": "TANQUES EPM",
-   "n": 346,
-   "naive_bayes": 0.789,
-   "persistencia": 0.8064
+   "n": 350,
+   "naive_bayes": 0.8143,
+   "persistencia": 0.8029
   },
   {
    "estacion": "TORRE SOCIAL",
-   "n": 329,
-   "naive_bayes": 0.7812,
-   "persistencia": 0.7812
+   "n": 338,
+   "naive_bayes": 0.7692,
+   "persistencia": 0.784
   },
   {
    "estacion": "TRÁFICO CENTRO",
-   "n": 323,
-   "naive_bayes": 0.9288,
-   "persistencia": 0.9474
+   "n": 334,
+   "naive_bayes": 0.9311,
+   "persistencia": 0.9461
   },
   {
    "estacion": "UNIVERSIDAD CES",
-   "n": 297,
-   "naive_bayes": 0.7407,
-   "persistencia": 0.7205
+   "n": 314,
+   "naive_bayes": 0.7771,
+   "persistencia": 0.7325
   },
   {
    "estacion": "VILLAHERMOSA",
-   "n": 329,
-   "naive_bayes": 0.7264,
-   "persistencia": 0.7234
+   "n": 339,
+   "naive_bayes": 0.7522,
+   "persistencia": 0.7257
   }
  ]
 }

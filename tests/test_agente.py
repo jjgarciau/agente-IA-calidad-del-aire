@@ -67,7 +67,7 @@ def test_predict_tomorrow(recursos):
     assert r["fecha_predicha"] == "2025-03-16"
     assert sum(r["probabilidades"].values()) == pytest.approx(1.0, abs=0.01)
     assert r["categoria_predicha"] == max(r["probabilidades"], key=r["probabilidades"].get)
-    assert set(r["variables_usadas"]) == {"nivel_hoy", "clase_ayer", "tendencia", "temporada", "dia_manana", "nivel_valle"}
+    assert set(r["variables_usadas"]) == {"nivel_hoy", "nivel_semana", "dia_manana", "cambio_valle"}
     assert "valor_real" in r and isinstance(r["acierto"], bool)
 
 

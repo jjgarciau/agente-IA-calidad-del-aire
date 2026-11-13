@@ -3,7 +3,9 @@
 Protocolo experimental:
   1. Partición temporal: se entrena con los días objetivo anteriores a TEST_DESDE (2025-01-01)
      y se prueba con los posteriores. Nunca se mezcla al azar (se filtraría el futuro).
-  2. El suavizado α se elige con una validación interna: el último año del entrenamiento.
+  2. El suavizado α se elige con una validación interna: el último año del entrenamiento
+     (2024). En ese mismo año se eligió el conjunto de variables. Sus métricas se guardan
+     aparte, marcadas como validación: son optimistas porque se usaron para decidir.
   3. Con el α elegido se reentrena con todo el entrenamiento y se evalúa UNA vez en prueba.
   4. Ablación: se repite quitando una variable a la vez para ver cuánto aporta cada una.
 
@@ -35,18 +37,37 @@ def _evaluar(modelo: NaiveBayesCategorico, datos: pd.DataFrame, variables: list[
     return evaluar(datos["y"].to_numpy(int), pred, K, ica.CLASE_EPISODIO)
 
 
-def elegir_alpha(entrenamiento: pd.DataFrame) -> tuple[float, list[dict]]:
-    """Valida α en el último año del entrenamiento (criterio: F1-macro)."""
+def _distribucion(d: pd.DataFrame) -> dict:
+    conteo = np.bincount(d["y"].to_numpy(int), minlength=K)
+    return {ica.CLASES[i]: int(conteo[i]) for i in range(K)}
+
+
+def _lineas_base(ajuste: pd.DataFrame, evaluacion: pd.DataFrame) -> dict:
+    y = evaluacion["y"].to_numpy(int)
+    return {
+        "Clase mayoritaria": evaluar(y, predecir_mayoritaria(ajuste["y"], len(evaluacion)), K, ica.CLASE_EPISODIO),
+        "Persistencia": evaluar(y, predecir_persistencia(evaluacion["clase_hoy"]), K, ica.CLASE_EPISODIO),
+    }
+
+
+def validar(entrenamiento: pd.DataFrame) -> dict:
+    """Elige α en el último año del entrenamiento (criterio: F1-macro) y guarda las métricas de ese año."""
     corte = entrenamiento["fecha_objetivo"].max() - pd.Timedelta(days=365)
     ajuste, validacion = entrenamiento[entrenamiento["fecha_objetivo"] <= corte], entrenamiento[entrenamiento["fecha_objetivo"] > corte]
     if len(ajuste) < 100 or len(validacion) < 100:
-        return 1.0, []
-    resultados = []
+        return {"alpha": 1.0, "alphas": []}
+    alphas = []
     for alpha in ALPHAS:
         m = _evaluar(_ajustar(ajuste, alpha), validacion)
-        resultados.append({"alpha": alpha, "f1_macro": m["f1_macro"], "exactitud": m["exactitud"]})
-    mejor = max(resultados, key=lambda r: (r["f1_macro"], r["exactitud"]))
-    return mejor["alpha"], resultados
+        alphas.append({"alpha": alpha, "f1_macro": m["f1_macro"], "exactitud": m["exactitud"], "recall_episodio": m["recall_episodio"]})
+    mejor = max(alphas, key=lambda r: (r["f1_macro"], r["exactitud"]))["alpha"]
+    return {
+        "alpha": mejor,
+        "alphas": alphas,
+        "ajuste": {"n": int(len(ajuste)), "desde": f"{ajuste['fecha_objetivo'].min():%Y-%m-%d}", "hasta": f"{ajuste['fecha_objetivo'].max():%Y-%m-%d}"},
+        "periodo": {"n": int(len(validacion)), "desde": f"{validacion['fecha_objetivo'].min():%Y-%m-%d}", "hasta": f"{validacion['fecha_objetivo'].max():%Y-%m-%d}", "clases": _distribucion(validacion)},
+        "resultados": {**_lineas_base(ajuste, validacion), "Naive Bayes (propio)": _evaluar(_ajustar(ajuste, mejor), validacion)},
+    }
 
 
 def entrenar(diario: pd.DataFrame, test_desde: str = config.TEST_DESDE) -> tuple[NaiveBayesCategorico, dict]:
@@ -56,15 +77,10 @@ def entrenar(diario: pd.DataFrame, test_desde: str = config.TEST_DESDE) -> tuple
     if entrenamiento.empty or prueba.empty:
         raise ValueError(f"La partición en {test_desde} deja vacío el entrenamiento o la prueba.")
 
-    alpha, validacion = elegir_alpha(entrenamiento)
+    validacion = validar(entrenamiento)
+    alpha = validacion["alpha"]
     modelo = _ajustar(entrenamiento, alpha)
-    y_prueba = prueba["y"].to_numpy(int)
-
-    resultados = {
-        "Clase mayoritaria": evaluar(y_prueba, predecir_mayoritaria(entrenamiento["y"], len(prueba)), K, ica.CLASE_EPISODIO),
-        "Persistencia": evaluar(y_prueba, predecir_persistencia(prueba["clase_hoy"]), K, ica.CLASE_EPISODIO),
-        "Naive Bayes (propio)": _evaluar(modelo, prueba),
-    }
+    resultados = {**_lineas_base(entrenamiento, prueba), "Naive Bayes (propio)": _evaluar(modelo, prueba)}
 
     ablacion = []
     for quitada in features.NOMBRES:
@@ -85,20 +101,17 @@ def entrenar(diario: pd.DataFrame, test_desde: str = config.TEST_DESDE) -> tuple
             }
         )
 
-    def distribucion(d: pd.DataFrame) -> dict:
-        conteo = np.bincount(d["y"].to_numpy(int), minlength=K)
-        return {ica.CLASES[i]: int(conteo[i]) for i in range(K)}
-
     metricas = {
         "clases": ica.CLASES,
         "variables": features.VARIABLES,
         "particion": {
             "test_desde": test_desde,
-            "entrenamiento": {"n": int(len(entrenamiento)), "desde": f"{entrenamiento['fecha_objetivo'].min():%Y-%m-%d}", "hasta": f"{entrenamiento['fecha_objetivo'].max():%Y-%m-%d}", "clases": distribucion(entrenamiento)},
-            "prueba": {"n": int(len(prueba)), "desde": f"{prueba['fecha_objetivo'].min():%Y-%m-%d}", "hasta": f"{prueba['fecha_objetivo'].max():%Y-%m-%d}", "clases": distribucion(prueba)},
+            "entrenamiento": {"n": int(len(entrenamiento)), "desde": f"{entrenamiento['fecha_objetivo'].min():%Y-%m-%d}", "hasta": f"{entrenamiento['fecha_objetivo'].max():%Y-%m-%d}", "clases": _distribucion(entrenamiento)},
+            "prueba": {"n": int(len(prueba)), "desde": f"{prueba['fecha_objetivo'].min():%Y-%m-%d}", "hasta": f"{prueba['fecha_objetivo'].max():%Y-%m-%d}", "clases": _distribucion(prueba)},
         },
         "alpha": alpha,
-        "validacion_alpha": validacion,
+        "validacion_alpha": validacion["alphas"],
+        "validacion": validacion,
         "resultados": resultados,
         "ablacion": ablacion,
         "por_estacion": por_estacion,
@@ -106,19 +119,28 @@ def entrenar(diario: pd.DataFrame, test_desde: str = config.TEST_DESDE) -> tuple
     return modelo, metricas
 
 
+def _tabla(resultados: dict) -> None:
+    print(f"{'Modelo':<24}{'Exactitud':>10}{'F1-macro':>10}{'Prec. epi.':>12}{'Recall epi.':>12}")
+    for nombre, m in resultados.items():
+        print(f"{nombre:<24}{m['exactitud']:>10.3f}{m['f1_macro']:>10.3f}{m['precision_episodio']:>12.3f}{m['recall_episodio']:>12.3f}")
+
+
 def imprimir(metricas: dict) -> None:
-    p = metricas["particion"]
+    p, v = metricas["particion"], metricas["validacion"]
     print(f"Entrenamiento: {p['entrenamiento']['n']:,} días-estación ({p['entrenamiento']['desde']} a {p['entrenamiento']['hasta']})")
     print(f"Prueba:        {p['prueba']['n']:,} días-estación ({p['prueba']['desde']} a {p['prueba']['hasta']})")
     print(f"Clases en prueba: {p['prueba']['clases']}")
     print(f"α elegido por validación: {metricas['alpha']}\n")
-    print(f"{'Modelo':<24}{'Exactitud':>10}{'F1-macro':>10}{'Prec. epi.':>12}{'Recall epi.':>12}")
-    for nombre, m in metricas["resultados"].items():
-        print(f"{nombre:<24}{m['exactitud']:>10.3f}{m['f1_macro']:>10.3f}{m['precision_episodio']:>12.3f}{m['recall_episodio']:>12.3f}")
+    print("PRUEBA (una sola evaluación, con el modelo entrenado en todo el entrenamiento)")
+    _tabla(metricas["resultados"])
+    if "resultados" in v:
+        print(f"\nVALIDACIÓN ({v['periodo']['desde']} a {v['periodo']['hasta']}, ajustando con datos hasta {v['ajuste']['hasta']}; usada para elegir α y variables)")
+        print(f"Clases en validación: {v['periodo']['clases']}")
+        _tabla(v["resultados"])
     print('\n("episodio" = Dañina para grupos sensibles o peor)')
-    print("\nAblación (Naive Bayes sin una variable):")
+    print("\nAblación en prueba (Naive Bayes sin una variable):")
     for a in metricas["ablacion"]:
-        print(f"  sin {a['sin_variable']:<12} exactitud {a['exactitud']:.3f}  F1-macro {a['f1_macro']:.3f}  recall epi. {a['recall_episodio']:.3f}")
+        print(f"  sin {a['sin_variable']:<13} exactitud {a['exactitud']:.3f}  F1-macro {a['f1_macro']:.3f}  recall epi. {a['recall_episodio']:.3f}")
 
 
 def main() -> None:
