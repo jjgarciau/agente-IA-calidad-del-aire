@@ -171,6 +171,16 @@ def test_fallo_del_proveedor_no_rompe(recursos, monkeypatch):
     assert "GROQ_API_KEY" in r.respuesta
 
 
+def test_citas_quedan_en_formato_unico(recursos):
+    assert agent.normalizar_citas("ok【1†Fuente: Resolución 2254 de 2017, p. 9】.") == "ok[Fuente: Resolución 2254 de 2017, p. 9]."
+    assert agent.normalizar_citas("ok【Fuente: Hoja ICA, p. 5】") == "ok[Fuente: Hoja ICA, p. 5]"
+    intacta = "ok [Fuente: Resolución 2254 de 2017, p. 3] y 12 µg/m³"
+    assert agent.normalizar_citas(intacta) == intacta
+    cliente = ClienteFalso([_respuesta("El límite es 37 µg/m³【2†Fuente: Resolución 2254 de 2017, p. 3】.")])
+    r = agent.run_agent("límite", recursos, client=cliente)
+    assert r.respuesta == "El límite es 37 µg/m³[Fuente: Resolución 2254 de 2017, p. 3]."
+
+
 def test_historial_se_recorta(recursos):
     historial = [{"role": "user" if i % 2 == 0 else "assistant", "content": f"turno {i}"} for i in range(20)]
     cliente = ClienteFalso([_respuesta("ok")])

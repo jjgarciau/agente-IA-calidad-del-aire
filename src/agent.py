@@ -17,6 +17,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import time
 from dataclasses import dataclass, field
 
@@ -32,13 +33,14 @@ Contexto de esta conversación:
 
 Reglas:
 1. Nunca inventes cifras. Todo valor de PM2.5 debe salir de get_pm25 y todo pronóstico de predict_tomorrow.
-2. Para normativa, límites, niveles de alerta, medidas o recomendaciones usa search_docs y responde solo con lo que digan los fragmentos devueltos. Cita cada afirmación tomada de ellos con el formato exacto [Fuente: <título>, p. <página>].
-3. Si search_docs no devuelve resultados, di que los documentos disponibles no contienen esa información. No completes con conocimiento propio.
-4. Si una herramienta devuelve un error, corrige los argumentos y reintenta si tiene sentido; si no, explica el problema y propone una alternativa (otra fecha u otra estación).
-5. Si la pregunta combina datos y normativa, encadena las herramientas necesarias antes de responder.
-6. Responde en español, en menos de 150 palabras, indicando la estación, la fecha y la categoría ICA de cada dato. Al dar un pronóstico menciona la probabilidad de la categoría prevista.
-7. Esta es una herramienta académica y no es consejo médico: cuando des recomendaciones de salud, recuérdalo en una frase.
-8. Si la pregunta no trata de la calidad del aire en el Valle de Aburrá, dilo con amabilidad y no uses herramientas."""
+2. Para normativa, límites, niveles de alerta, medidas o recomendaciones usa search_docs y responde solo con lo que digan los fragmentos devueltos. Cita cada afirmación tomada de ellos copiando el campo "cita" del fragmento, con corchetes simples: [Fuente: <título>, p. <página>].
+3. Si search_docs no devuelve resultados, o los fragmentos no responden exactamente lo preguntado, di que los documentos disponibles no contienen esa información. No completes con conocimiento propio ni agregues medidas o recomendaciones que no estén en los fragmentos.
+4. Usa un número de un fragmento solo si el texto deja claro a qué contaminante, tiempo de exposición y categoría corresponde. En tablas con varias columnas, si no es evidente cuál es la de PM2.5, no lo adivines.
+5. Si una herramienta devuelve un error, corrige los argumentos y reintenta si tiene sentido; si no, explica el problema y propone una alternativa (otra fecha u otra estación).
+6. Si la pregunta combina datos y normativa, encadena las herramientas necesarias antes de responder.
+7. Responde en español, en menos de 150 palabras, indicando la estación, la fecha y la categoría ICA de cada dato. Al dar un pronóstico menciona la probabilidad de la categoría prevista.
+8. Esta es una herramienta académica y no es consejo médico: cuando des recomendaciones de salud, recuérdalo en una frase.
+9. Si la pregunta no trata de la calidad del aire en el Valle de Aburrá, dilo con amabilidad y no uses herramientas."""
 
 AVISO_LIMITE = (
     "Se alcanzó el límite de pasos con herramientas. Responde ahora con la información que ya tienes, "
@@ -71,6 +73,16 @@ class Resultado:
                     vistas.add(clave)
                     out.append({"titulo": r["titulo"], "archivo": r["archivo"], "pagina": r["pagina"]})
         return out
+
+
+def normalizar_citas(texto: str) -> str:
+    """Deja todas las citas en el formato [Fuente: título, p. N].
+
+    Algunos modelos escriben las citas con sus propios símbolos, por ejemplo
+    【1†Fuente: título, p. 9】. Se convierten a corchetes simples y se quita el índice.
+    """
+    texto = texto.replace("【", "[").replace("】", "]")
+    return re.sub(r"\[\s*\d+\s*†\s*(?=Fuente:)", "[", texto)
 
 
 def _llamar_llm(client, intentos: int = 4, **kwargs):
@@ -136,7 +148,7 @@ def run_agent(
             mensaje = respuesta.choices[0].message
 
             if not mensaje.tool_calls:                      # el modelo ya tiene la respuesta final
-                resultado.respuesta = (mensaje.content or "").strip()
+                resultado.respuesta = normalizar_citas((mensaje.content or "").strip())
                 return resultado
 
             mensajes.append(_a_dict(mensaje))
@@ -157,7 +169,7 @@ def run_agent(
         resultado.limite_alcanzado = True
         mensajes.append({"role": "user", "content": AVISO_LIMITE})
         respuesta = _llamar_llm(client, model=model, messages=mensajes, tools=TOOLS, tool_choice="none", temperature=0.2)
-        texto = (respuesta.choices[0].message.content or "").strip()
+        texto = normalizar_citas((respuesta.choices[0].message.content or "").strip())
         resultado.respuesta = texto or "No logré completar la consulta dentro del límite de pasos. Intenta con una pregunta más concreta."
         return resultado
 

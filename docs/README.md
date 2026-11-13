@@ -23,6 +23,10 @@ Copia el PDF (o un `.txt` / `.md`) en esta carpeta, agrega una fila a `fuentes.c
 
 ## Nota sobre las tablas
 
-En la Resolución 2254 de 2017 varias tablas (niveles máximos, puntos de corte del ICA) están incrustadas como
-imágenes, así que su contenido no llega al índice. La hoja metodológica del IDEAM y el plan de acción del POECA
-sí traen esos valores como texto, y por eso forman parte del corpus.
+En el PDF de la Resolución 2254 de 2017 la página 3 completa (niveles máximos permisibles) y las tablas de las páginas 6 y 10
+(niveles de prevención, alerta y emergencia; puntos de corte del ICA) están incrustadas como imágenes, así que su contenido no
+llega al índice. En la primera evaluación del agente esto produjo una respuesta incorrecta sobre el límite diario de PM2.5.
+
+Por eso el corpus incluye `res_2254_2017_tablas.md`: una transcripción de esos valores hecha a partir de las imágenes del mismo
+PDF, redactada en oraciones completas para que cada fragmento conserve su contexto (resolución, tabla, contaminante y tiempo de
+exposición). Al ser un archivo de texto no tiene paginación propia: la página del PDF original se indica dentro de cada oración.
