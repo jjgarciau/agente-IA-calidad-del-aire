@@ -1,6 +1,6 @@
 # Resultados
 
-Generado el 2026-11-13 14:17 con `python -m src.reporte` a partir de los archivos de la última corrida.
+Generado el 2026-11-13 19:27 con `python -m src.reporte` a partir de los archivos de la última corrida.
 
 ## Datos
 
@@ -61,13 +61,13 @@ Ablación (Naive Bayes sin una variable):
 
 ## Agente: preguntas de prueba
 
-Corrida del 2026-11-13 14:06 con el modelo `openai/gpt-oss-120b` y T_max = 5.
+Corrida del 2026-11-13 14:24 con el modelo `openai/gpt-oss-120b` y T_max = 5.
 
 - Preguntas: **14**
 - Llamó a la herramienta esperada: **13/14**
 - Recuperó un documento esperado: **4/4**
 - Citó un documento esperado: **3/4**
-- Iteraciones promedio: **1.9** · alcanzaron T_max: **0**
+- Iteraciones promedio: **2.1** · alcanzaron T_max: **1**
 
 | # | Tipo | Pregunta | Herramientas llamadas | Herramienta correcta | Citó fuente |
 |---|---|---|---|---|---|
@@ -80,7 +80,7 @@ Corrida del 2026-11-13 14:06 con el modelo `openai/gpt-oss-120b` y T_max = 5.
 | 7 | normativa | ¿Cuál es el nivel máximo permisible de PM2.5 para 24 horas en Colombia? | search_docs | sí | sí |
 | 8 | normativa | ¿Qué rangos de PM2.5 corresponden a los niveles de prevención, alerta y emergencia? | search_docs | sí | sí |
 | 9 | normativa | ¿Qué es el POECA y quién declara un episodio de contaminación? | search_docs | sí | sí |
-| 10 | encadenada | ¿Cómo estará mañana el aire y qué se recomienda hacer en ese nivel? | predict_tomorrow > search_docs > search_docs | sí | no |
+| 10 | encadenada | ¿Cómo estará mañana el aire y qué se recomienda hacer en ese nivel? | predict_tomorrow > search_docs > search_docs > search_docs > search_docs | sí | no |
 | 11 | limite | ¿Cuál fue el PM2.5 en la estación Marte el 2025-03-12? | get_pm25 | sí | — |
 | 12 | limite | ¿Cuál fue el PM2.5 en Tráfico Centro el 2027-06-01? | ninguna | no | — |
 | 13 | limite | ¿Qué multa se paga por incumplir el pico y placa ambiental? | search_docs | sí | — |
