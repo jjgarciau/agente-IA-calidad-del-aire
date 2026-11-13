@@ -88,9 +88,14 @@ def seccion_agente() -> list[str]:
         return ["## Agente", "", "Aún no se ha corrido la evaluación. Ejecuta `python -m eval.run_eval`.", ""]
     df = pd.read_csv(ruta)
     con_fuente = df[df["cito_fuente"].notna()]
+    corrida = ""
+    resumen = ruta.with_name("resultados.md")
+    if resumen.exists():                                  # fecha y modelo de la corrida, tal como los dejó run_eval
+        corrida = next((l.strip() for l in resumen.read_text(encoding="utf-8").splitlines() if l.startswith("Corrida del")), "")
     lineas = [
         "## Agente: preguntas de prueba",
         "",
+        *([corrida, ""] if corrida else []),
         f"- Preguntas: **{len(df)}**",
         f"- Llamó a la herramienta esperada: **{int(df['herramienta_correcta'].sum())}/{len(df)}**",
     ]

@@ -1,58 +1,67 @@
 # Resultados
 
-Generado el 2026-11-12 15:46 con `python -m src.reporte` a partir de los archivos de la última corrida.
+Generado el 2026-11-13 08:41 con `python -m src.reporte` a partir de los archivos de la última corrida.
 
 ## Datos
 
 - Periodo: **2022-01-01 a 2025-12-31**
-- Estaciones: **25** · días-estación con promedio válido: **22,172**
-- PM2.5 diario: media 22.2 µg/m³, mediana 16.1, máximo 316.9
+- Estaciones: **25** · días-estación con promedio válido: **21,245**
+- PM2.5 diario: media 17.0 µg/m³, mediana 15.8, máximo 59.5
+- Descartados por escala corrupta en la fuente (punto decimal perdido): **927** días-estación en 275 meses de 14 estaciones (`data/processed/descartes_escala.csv`)
 
 | Categoría ICA | Días-estación | Fracción |
 |---|---|---|
-| Buena | 5,816 | 26.2% |
-| Aceptable | 15,190 | 68.5% |
-| Dañina para grupos sensibles | 250 | 1.1% |
-| Dañina | 543 | 2.4% |
-| Muy dañina | 359 | 1.6% |
-| Peligrosa | 14 | 0.1% |
+| Buena | 5,816 | 27.4% |
+| Aceptable | 15,186 | 71.5% |
+| Dañina para grupos sensibles | 242 | 1.1% |
+| Dañina | 1 | 0.0% |
+| Muy dañina | 0 | 0.0% |
+| Peligrosa | 0 | 0.0% |
 
 ## Modelo de la Parte 1: Naive Bayes frente a las líneas base
 
-- Entrenamiento: 12,830 días-estación (2022-01-03 a 2024-12-31)
-- Prueba: 7,461 días-estación (2025-01-01 a 2025-12-31), nunca vistos al entrenar
-- Clases en prueba: Buena 2,713, Aceptable 4,742, Dañina para grupos sensibles 6, Dañina o peor 0
+- Entrenamiento: 12,883 días-estación (2022-01-02 a 2024-12-31)
+- Prueba: 7,682 días-estación (2025-01-01 a 2025-12-31), nunca vistos al entrenar
+- Clases en prueba: Buena 2,809, Aceptable 4,867, Dañina para grupos sensibles 6, Dañina o peor 0
 - Suavizado α = 0.1 (elegido validando en el último año del entrenamiento)
 
 | Modelo | Exactitud | F1-macro | Precisión de episodio | Recall de episodio |
 |---|---|---|---|---|
-| Clase mayoritaria | 0.636 | 0.259 | 0.000 | 0.000 |
+| Clase mayoritaria | 0.634 | 0.259 | 0.000 | 0.000 |
 | Persistencia | 0.782 | 0.510 | 0.000 | 0.000 |
-| Naive Bayes (propio) | 0.769 | 0.504 | 0.000 | 0.000 |
+| Naive Bayes (propio) | 0.791 | 0.550 | 0.059 | 0.167 |
 
-«Episodio» = Dañina para grupos sensibles o peor.
+«Episodio» = Dañina para grupos sensibles o peor. El periodo de prueba solo tiene 6 días de episodio, así que allí la precisión y el recall de episodio no son estimables.
 
-Matriz de confusión del Naive Bayes (filas = clase real, columnas = clase predicha):
+Validación (2024-01-02 a 2024-12-31, 7,458 días-estación, 200 de episodio; modelo ajustado con datos hasta 2024-01-01). Este año se usó para elegir α y las variables, así que sus cifras son optimistas:
+
+| Modelo (validación) | Exactitud | F1-macro | Precisión de episodio | Recall de episodio |
+|---|---|---|---|---|
+| Clase mayoritaria | 0.738 | 0.212 | 0.000 | 0.000 |
+| Persistencia | 0.804 | 0.514 | 0.559 | 0.565 |
+| Naive Bayes (propio) | 0.811 | 0.519 | 0.472 | 0.625 |
+
+Matriz de confusión del Naive Bayes en prueba (filas = clase real, columnas = clase predicha):
 
 | Real \ Predicha | Buena | Aceptable | Dañina para grupos sensibles | Dañina o peor |
 |---|---|---|---|---|
-| Buena | 1972 | 741 | 0 | 0 |
-| Aceptable | 965 | 3769 | 8 | 0 |
-| Dañina para grupos sensibles | 0 | 6 | 0 | 0 |
+| Buena | 2197 | 612 | 0 | 0 |
+| Aceptable | 969 | 3882 | 16 | 0 |
+| Dañina para grupos sensibles | 0 | 5 | 1 | 0 |
 | Dañina o peor | 0 | 0 | 0 | 0 |
 
 Ablación (Naive Bayes sin una variable):
 
 | Variable retirada | Exactitud | F1-macro | Recall de episodio |
 |---|---|---|---|
-| nivel_hoy | 0.749 | 0.478 | 0.000 |
-| clase_ayer | 0.768 | 0.500 | 0.000 |
-| tendencia | 0.770 | 0.502 | 0.000 |
-| temporada | 0.780 | 0.510 | 0.000 |
-| dia_manana | 0.768 | 0.503 | 0.000 |
-| nivel_valle | 0.773 | 0.498 | 0.000 |
+| nivel_hoy | 0.790 | 0.514 | 0.000 |
+| nivel_semana | 0.778 | 0.496 | 0.000 |
+| dia_manana | 0.791 | 0.552 | 0.167 |
+| cambio_valle | 0.797 | 0.524 | 0.000 |
 
 ## Agente: preguntas de prueba
+
+Corrida del 2026-11-12 15:45 con el modelo `openai/gpt-oss-120b` y T_max = 5.
 
 - Preguntas: **14**
 - Llamó a la herramienta esperada: **13/14**
