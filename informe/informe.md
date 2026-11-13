@@ -69,7 +69,7 @@ El Naive Bayes supera a la persistencia por un punto porcentual. Un *bootstrap* 
 - **Citas con otro formato.** En dos respuestas el modelo citó con símbolos propios; ahora las citas se normalizan.
 - **Recomendaciones no respaldadas.** En la pregunta encadenada agregó medidas que no estaban en los fragmentos; el prompt ahora lo prohíbe.
 
-El único «fallo» de herramienta fue una fecha fuera de rango que el agente respondió bien sin llamar a ninguna, porque el prompt ya le informa el rango de datos: es un defecto del criterio automático, no del agente. La evaluación se repite con `python -m eval.run_eval`; la corrida vigente, con su fecha, está en `RESULTADOS.md`.
+El único «fallo» de herramienta fue una fecha fuera de rango que el agente respondió bien sin llamar a ninguna, porque el prompt ya le informa el rango de datos: es un defecto del criterio automático, no del agente. En la segunda corrida, con estos cambios, el agente respondió correctamente el límite diario (37 µg/m³) citando la transcripción de la tabla, y las preguntas de normativa pasaron a citar la fuente esperada en 3 de 3. La corrida vigente, con su fecha, está en `RESULTADOS.md`.
 
 ## 6. Limitaciones
 
